@@ -1,26 +1,26 @@
 package com.footBallTogether.www.dto;
 
+import java.util.List;
+
 public class MatchSchedule {
 	private int matchScheduleId;
 	private int teamId;
 	private int matchInfoId;
-	private Attendant attendant;
+	private List<Attendant> attendants;
 	
 	public MatchSchedule() {}
 
-	public MatchSchedule(int teamId, int matchInfoId, Attendant attendant) {
-		super();
-		this.teamId = teamId;
-		this.matchInfoId = matchInfoId;
-		this.attendant = attendant;
-	}
-
-	public MatchSchedule(int matchScheduleId, int teamId, int matchInfoId, Attendant attendant) {
+	public MatchSchedule(int matchScheduleId, int teamId, int matchInfoId, List<Attendant> attendants) {
 		super();
 		this.matchScheduleId = matchScheduleId;
 		this.teamId = teamId;
 		this.matchInfoId = matchInfoId;
-		this.attendant = attendant;
+		this.attendants = attendants;
+	}
+
+	public MatchSchedule(int matchScheduleId) {
+		super();
+		this.matchScheduleId = matchScheduleId;
 	}
 
 	public int getMatchScheduleId() {
@@ -47,17 +47,17 @@ public class MatchSchedule {
 		this.matchInfoId = matchInfoId;
 	}
 
-	public Attendant getAttendant() {
-		return attendant;
+	public List<Attendant> getAttendants() {
+		return attendants;
 	}
 
-	public void setAttendant(Attendant attendant) {
-		this.attendant = attendant;
+	public void setAttendants(List<Attendant> attendants) {
+		this.attendants = attendants;
 	}
 
 	@Override
 	public String toString() {
 		return "MatchSchedule [matchScheduleId=" + matchScheduleId + ", teamId=" + teamId + ", matchInfoId="
-				+ matchInfoId + "]";
+				+ matchInfoId + ", attendants=" + attendants + "]";
 	}
 }

@@ -1,31 +1,37 @@
 package com.footBallTogether.www.dto;
 
+import java.util.List;
+
 public class User {
 	private String email;
 	private String pass;
 	private String name;
-	private String phone_num;
-	private String user_reg_date;
-	private String recent_login;
-	private String main_foot;
+	private String phoneNum;
+	private String userRegDate;
+	private String recentLogin;
+	private String mainFoot;
 	private String position;
-	private int teamMember;
+	
+	private List<TeamMember> teamMembers;
+	private List<Employment> Employments;
 	
 	public User() {
 		super();
 	}
 
-	public User(String email, String pass, String name, String phone_num, String user_reg_date, String recent_login,
-			String main_foot, String position) {
+	public User(String email, String pass, String name, String phoneNum, String userRegDate, String recentLogin,
+			String mainFoot, String position, List<TeamMember> teamMembers, List<Employment> employments) {
 		super();
 		this.email = email;
 		this.pass = pass;
 		this.name = name;
-		this.phone_num = phone_num;
-		this.user_reg_date = user_reg_date;
-		this.recent_login = recent_login;
-		this.main_foot = main_foot;
+		this.phoneNum = phoneNum;
+		this.userRegDate = userRegDate;
+		this.recentLogin = recentLogin;
+		this.mainFoot = mainFoot;
 		this.position = position;
+		this.teamMembers = teamMembers;
+		Employments = employments;
 	}
 
 	public String getEmail() {
@@ -52,36 +58,36 @@ public class User {
 		this.name = name;
 	}
 
-	public String getPhone_num() {
-		return phone_num;
+	public String getPhoneNum() {
+		return phoneNum;
 	}
 
-	public void setPhone_num(String phone_num) {
-		this.phone_num = phone_num;
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
 	}
 
-	public String getUser_reg_date() {
-		return user_reg_date;
+	public String getUserRegDate() {
+		return userRegDate;
 	}
 
-	public void setUser_reg_date(String user_reg_date) {
-		this.user_reg_date = user_reg_date;
+	public void setUserRegDate(String userRegDate) {
+		this.userRegDate = userRegDate;
 	}
 
-	public String getRecent_login() {
-		return recent_login;
+	public String getRecentLogin() {
+		return recentLogin;
 	}
 
-	public void setRecent_login(String recent_login) {
-		this.recent_login = recent_login;
+	public void setRecentLogin(String recentLogin) {
+		this.recentLogin = recentLogin;
 	}
 
-	public String getMain_foot() {
-		return main_foot;
+	public String getMainFoot() {
+		return mainFoot;
 	}
 
-	public void setMain_foot(String main_foot) {
-		this.main_foot = main_foot;
+	public void setMainFoot(String mainFoot) {
+		this.mainFoot = mainFoot;
 	}
 
 	public String getPosition() {
@@ -92,11 +98,26 @@ public class User {
 		this.position = position;
 	}
 
+	public List<TeamMember> getTeamMembers() {
+		return teamMembers;
+	}
+
+	public void setTeamMembers(List<TeamMember> teamMembers) {
+		this.teamMembers = teamMembers;
+	}
+
+	public List<Employment> getEmployments() {
+		return Employments;
+	}
+
+	public void setEmployments(List<Employment> employments) {
+		Employments = employments;
+	}
+
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", pass=" + pass + ", name=" + name + ", phone_num=" + phone_num
-				+ ", user_reg_date=" + user_reg_date + ", recent_login=" + recent_login + ", main_foot=" + main_foot
-				+ ", position=" + position + "]";
+		return "User [email=" + email + ", pass=" + pass + ", name=" + name + ", phoneNum=" + phoneNum
+				+ ", userRegDate=" + userRegDate + ", recentLogin=" + recentLogin + ", mainFoot=" + mainFoot
+				+ ", position=" + position + ", teamMembers=" + teamMembers + ", Employments=" + Employments + "]";
 	}
-	
 } 

@@ -1,67 +1,75 @@
 package com.footBallTogether.www.dto;
 
-public class Employeement {
-	private int employeementId;
-	private int match_info_id;
-	private int team_id_giver;
-	private int team_member_id_giver;
-	private int employeement_status;
+public class Employment {
+	private int employmentId;
+	private int matchInfoId;
+	private int teamIdGiver;
+	private int teamMemberIdGiver;
+	private int employmentStatus;
 	private String email;
 	
-	
-	public Employeement() {
+	public Employment() {
 		super();
 	}
 
-	public Employeement(int employeementId, int match_info_id, int team_id_giver, int team_member_id_giver,
-			int employeement_status, String email) {
+	public Employment(int matchInfoId, int teamIdGiver, int teamMemberIdGiver, int employmentStatus, String email) {
 		super();
-		this.employeementId = employeementId;
-		this.match_info_id = match_info_id;
-		this.team_id_giver = team_id_giver;
-		this.team_member_id_giver = team_member_id_giver;
-		this.employeement_status = employeement_status;
+		this.matchInfoId = matchInfoId;
+		this.teamIdGiver = teamIdGiver;
+		this.teamMemberIdGiver = teamMemberIdGiver;
+		this.employmentStatus = employmentStatus;
 		this.email = email;
 	}
 
-	public int getEmployeementId() {
-		return employeementId;
+	public Employment(int employmentId, int matchInfoId, int teamIdGiver, int teamMemberIdGiver, int employmentStatus,
+			String email) {
+		super();
+		this.employmentId = employmentId;
+		this.matchInfoId = matchInfoId;
+		this.teamIdGiver = teamIdGiver;
+		this.teamMemberIdGiver = teamMemberIdGiver;
+		this.employmentStatus = employmentStatus;
+		this.email = email;
 	}
 
-	public void setEmployeementId(int employeementId) {
-		this.employeementId = employeementId;
+	public int getEmploymentId() {
+		return employmentId;
 	}
 
-	public int getMatch_info_id() {
-		return match_info_id;
+	public void setEmploymentId(int employmentId) {
+		this.employmentId = employmentId;
 	}
 
-	public void setMatch_info_id(int match_info_id) {
-		this.match_info_id = match_info_id;
+	public int getMatchInfoId() {
+		return matchInfoId;
 	}
 
-	public int getTeam_id_giver() {
-		return team_id_giver;
+	public void setMatchInfoId(int matchInfoId) {
+		this.matchInfoId = matchInfoId;
 	}
 
-	public void setTeam_id_giver(int team_id_giver) {
-		this.team_id_giver = team_id_giver;
+	public int getTeamIdGiver() {
+		return teamIdGiver;
 	}
 
-	public int getTeam_member_id_giver() {
-		return team_member_id_giver;
+	public void setTeamIdGiver(int teamIdGiver) {
+		this.teamIdGiver = teamIdGiver;
 	}
 
-	public void setTeam_member_id_giver(int team_member_id_giver) {
-		this.team_member_id_giver = team_member_id_giver;
+	public int getTeamMemberIdGiver() {
+		return teamMemberIdGiver;
 	}
 
-	public int getEmployeement_status() {
-		return employeement_status;
+	public void setTeamMemberIdGiver(int teamMemberIdGiver) {
+		this.teamMemberIdGiver = teamMemberIdGiver;
 	}
 
-	public void setEmployeement_status(int employeement_status) {
-		this.employeement_status = employeement_status;
+	public int getEmploymentStatus() {
+		return employmentStatus;
+	}
+
+	public void setEmploymentStatus(int employmentStatus) {
+		this.employmentStatus = employmentStatus;
 	}
 
 	public String getEmail() {
@@ -74,8 +82,10 @@ public class Employeement {
 
 	@Override
 	public String toString() {
-		return "Employeement [employeementId=" + employeementId + ", match_info_id=" + match_info_id
-				+ ", team_id_giver=" + team_id_giver + ", team_member_id_giver=" + team_member_id_giver
-				+ ", employeement_status=" + employeement_status + ", email=" + email + "]";
-	}	
+		return "Employment [employmentId=" + employmentId + ", matchInfoId=" + matchInfoId + ", teamIdGiver="
+				+ teamIdGiver + ", teamMemberIdGiver=" + teamMemberIdGiver + ", employmentStatus=" + employmentStatus
+				+ ", email=" + email + "]";
+	}
+	
+	
 }

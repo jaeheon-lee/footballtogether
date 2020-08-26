@@ -1,5 +1,7 @@
 package com.footBallTogether.www.dto;
 
+import java.util.List;
+
 public class Team {
 	private int teamId;
 	private String teamName;
@@ -10,20 +12,23 @@ public class Team {
 	private int uniformType;
 	private String foundingDate;
 	private String teamRegDate;
+	
 	private TeamMannerScore teamMannerScore;
-	private TeamMember teamMember;
-	private Vote vote;
-	private MatchSchedule matchSchedule;
-	private Assignment assignment;
-	private Employment employement;
-	private Search search;
-
-	public Team() {
-		super();
-	}
+	private List<TeamMember> teamMembers;
+	
+	
+	private List<Vote> votes;
+	private List<MatchSchedule> matchSchedules;
+	private List<Assignment> assignments;
+	private List<Employment> employements;
+	private List<Search> searchs;
+	
+	public Team() {}
+	
 	public Team(String teamName, String emblem, String area, String stadiumInfo, String uniformColor, int uniformType,
-			String foundingDate, String teamRegDate, TeamMannerScore teamMannerScore, TeamMember teamMember, Vote vote,
-			MatchSchedule matchSchedule, Assignment assignment, Employment employement, Search search) {
+			String foundingDate, String teamRegDate, TeamMannerScore teamMannerScore, List<TeamMember> teamMembers,
+			List<Vote> votes, List<MatchSchedule> matchSchedules, List<Assignment> assignments,
+			List<Employment> employements, List<Search> searchs) {
 		super();
 		this.teamName = teamName;
 		this.emblem = emblem;
@@ -34,17 +39,18 @@ public class Team {
 		this.foundingDate = foundingDate;
 		this.teamRegDate = teamRegDate;
 		this.teamMannerScore = teamMannerScore;
-		this.teamMember = teamMember;
-		this.vote = vote;
-		this.matchSchedule = matchSchedule;
-		this.assignment = assignment;
-		this.employement = employement;
-		this.search = search;
+		this.teamMembers = teamMembers;
+		this.votes = votes;
+		this.matchSchedules = matchSchedules;
+		this.assignments = assignments;
+		this.employements = employements;
+		this.searchs = searchs;
 	}
+
 	public Team(int teamId, String teamName, String emblem, String area, String stadiumInfo, String uniformColor,
 			int uniformType, String foundingDate, String teamRegDate, TeamMannerScore teamMannerScore,
-			TeamMember teamMember, Vote vote, MatchSchedule matchSchedule, Assignment assignment,
-			Employment employement, Search search) {
+			List<TeamMember> teamMembers, List<Vote> votes, List<MatchSchedule> matchSchedules,
+			List<Assignment> assignments, List<Employment> employements, List<Search> searchs) {
 		super();
 		this.teamId = teamId;
 		this.teamName = teamName;
@@ -56,114 +62,149 @@ public class Team {
 		this.foundingDate = foundingDate;
 		this.teamRegDate = teamRegDate;
 		this.teamMannerScore = teamMannerScore;
-		this.teamMember = teamMember;
-		this.vote = vote;
-		this.matchSchedule = matchSchedule;
-		this.assignment = assignment;
-		this.employement = employement;
-		this.search = search;
+		this.teamMembers = teamMembers;
+		this.votes = votes;
+		this.matchSchedules = matchSchedules;
+		this.assignments = assignments;
+		this.employements = employements;
+		this.searchs = searchs;
 	}
+
 	public int getTeamId() {
 		return teamId;
 	}
+
 	public void setTeamId(int teamId) {
 		this.teamId = teamId;
 	}
+
 	public String getTeamName() {
 		return teamName;
 	}
+
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
 	}
+
 	public String getEmblem() {
 		return emblem;
 	}
+
 	public void setEmblem(String emblem) {
 		this.emblem = emblem;
 	}
+
 	public String getArea() {
 		return area;
 	}
+
 	public void setArea(String area) {
 		this.area = area;
 	}
+
 	public String getStadiumInfo() {
 		return stadiumInfo;
 	}
+
 	public void setStadiumInfo(String stadiumInfo) {
 		this.stadiumInfo = stadiumInfo;
 	}
+
 	public String getUniformColor() {
 		return uniformColor;
 	}
+
 	public void setUniformColor(String uniformColor) {
 		this.uniformColor = uniformColor;
 	}
+
 	public int getUniformType() {
 		return uniformType;
 	}
+
 	public void setUniformType(int uniformType) {
 		this.uniformType = uniformType;
 	}
+
 	public String getFoundingDate() {
 		return foundingDate;
 	}
+
 	public void setFoundingDate(String foundingDate) {
 		this.foundingDate = foundingDate;
 	}
+
 	public String getTeamRegDate() {
 		return teamRegDate;
 	}
+
 	public void setTeamRegDate(String teamRegDate) {
 		this.teamRegDate = teamRegDate;
 	}
+
 	public TeamMannerScore getTeamMannerScore() {
 		return teamMannerScore;
 	}
+
 	public void setTeamMannerScore(TeamMannerScore teamMannerScore) {
 		this.teamMannerScore = teamMannerScore;
 	}
-	public TeamMember getTeamMember() {
-		return teamMember;
+
+	public List<TeamMember> getTeamMembers() {
+		return teamMembers;
 	}
-	public void setTeamMember(TeamMember teamMember) {
-		this.teamMember = teamMember;
+
+	public void setTeamMembers(List<TeamMember> teamMembers) {
+		this.teamMembers = teamMembers;
 	}
-	public Vote getVote() {
-		return vote;
+
+	public List<Vote> getVotes() {
+		return votes;
 	}
-	public void setVote(Vote vote) {
-		this.vote = vote;
+
+	public void setVotes(List<Vote> votes) {
+		this.votes = votes;
 	}
-	public MatchSchedule getMatchSchedule() {
-		return matchSchedule;
+
+	public List<MatchSchedule> getMatchSchedules() {
+		return matchSchedules;
 	}
-	public void setMatchSchedule(MatchSchedule matchSchedule) {
-		this.matchSchedule = matchSchedule;
+
+	public void setMatchSchedules(List<MatchSchedule> matchSchedules) {
+		this.matchSchedules = matchSchedules;
 	}
-	public Assignment getAssignment() {
-		return assignment;
+
+	public List<Assignment> getAssignments() {
+		return assignments;
 	}
-	public void setAssignment(Assignment assignment) {
-		this.assignment = assignment;
+
+	public void setAssignments(List<Assignment> assignments) {
+		this.assignments = assignments;
 	}
-	public Employment getEmployement() {
-		return employement;
+
+	public List<Employment> getEmployements() {
+		return employements;
 	}
-	public void setEmployement(Employment employement) {
-		this.employement = employement;
+
+	public void setEmployements(List<Employment> employements) {
+		this.employements = employements;
 	}
-	public Search getSearch() {
-		return search;
+
+	public List<Search> getSearchs() {
+		return searchs;
 	}
-	public void setSearch(Search search) {
-		this.search = search;
+
+	public void setSearchs(List<Search> searchs) {
+		this.searchs = searchs;
 	}
+
 	@Override
 	public String toString() {
 		return "Team [teamId=" + teamId + ", teamName=" + teamName + ", emblem=" + emblem + ", area=" + area
 				+ ", stadiumInfo=" + stadiumInfo + ", uniformColor=" + uniformColor + ", uniformType=" + uniformType
 				+ ", foundingDate=" + foundingDate + ", teamRegDate=" + teamRegDate + ", teamMannerScore="
-				+ teamMannerScore + ", vote=" + vote + "]";
+				+ teamMannerScore + ", teamMembers=" + teamMembers + ", votes=" + votes + ", matchSchedules="
+				+ matchSchedules + ", assignments=" + assignments + ", employements=" + employements + ", searchs="
+				+ searchs + "]";
 	}
 }
