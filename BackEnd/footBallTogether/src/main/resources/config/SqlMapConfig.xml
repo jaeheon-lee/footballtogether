@@ -4,11 +4,12 @@
 <configuration>
 
 	<typeAliases>
-		 <package name="com.encore.pms.dto"/> 
+		 <package name="com.footBallTogether.www.dto"/> 
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="spring/phone_query.xml"/>
+		<mapper resource="config/footBallTogether_LJH.xml"/>
+		<mapper resource="config/footBallTogether_mhk.xml"/>
 	</mappers>
 	
 </configuration>
