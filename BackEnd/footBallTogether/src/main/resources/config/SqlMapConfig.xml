@@ -9,7 +9,8 @@
 	
 	<mappers>
 		<mapper resource="config/footBallTogether_LJH.xml"/>
-		<mapper resource="config/footBallTogether_mhk.xml"/>
+		<mapper resource="config/footBallTogether_MHK.xml"/>
+		<mapper resource="config/footBallTogether.xml"/>
 	</mappers>
 	
 </configuration>
