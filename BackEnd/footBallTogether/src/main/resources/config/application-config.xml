@@ -18,14 +18,15 @@
 		<property name="username" value="${JDBC.Username}"/>
 		<property name="password" value="${JDBC.Password}"/>		
 	</bean>
-	
+
+		<!-- MyBatis Framework 빈 등록 -->
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:config/SqlMapConfig.xml"/>
 		<property name="dataSource" ref="dataSource"/>
-	</bean>	
+	</bean>
 	
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSessionFactoryBean"/>	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
 	</bean>
 	
 	<!-- Transaction 관련 처리 추가 -->
