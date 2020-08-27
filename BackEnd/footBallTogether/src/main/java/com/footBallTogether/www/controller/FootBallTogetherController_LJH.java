@@ -1,32 +1,26 @@
 package com.footBallTogether.www.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import com.footBallTogether.www.dto.User;
 import com.footBallTogether.www.service.FootBallTogetherService_LJH;
 
-@Controller
+@RestController
+@RequestMapping("footBallTogether")
 public class FootBallTogetherController_LJH {
 	
 	@Autowired
 	private FootBallTogetherService_LJH footBallTogetherService_LJH;
 	
-	
-	@GetMapping("login.do")
-	public String login(User user) {
-		User rUser = footBallTogetherService_LJH.selectUser(user);
-		System.out.println(rUser);
-		return "login";
+	@GetMapping("user")
+	public ResponseEntity<User> getBook(@PathVariable User user) throws Exception{
+		User rUser =footBallTogetherService_LJH.selectUser(user);
+		if(rUser==null) return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+		else return new ResponseEntity<User>(rUser,HttpStatus.OK);
 	}
-	/*
-	 * @GetMapping("user") public User login(){//@RequestBody User user
-	 * System.out.println("실행1");
-	 * 
-	 * return null; }
-	 */
 }
