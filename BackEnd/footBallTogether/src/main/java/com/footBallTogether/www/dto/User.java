@@ -13,7 +13,7 @@ public class User {
 	private String position;
 	
 	private List<TeamMember> teamMembers;
-	private List<Employment> Employments;
+	private List<Employment> employments;
 	
 	public User() {
 		super();
@@ -31,7 +31,7 @@ public class User {
 		this.mainFoot = mainFoot;
 		this.position = position;
 		this.teamMembers = teamMembers;
-		Employments = employments;
+		this.employments = employments;
 	}
 
 	public String getEmail() {
@@ -107,17 +107,18 @@ public class User {
 	}
 
 	public List<Employment> getEmployments() {
-		return Employments;
+		return employments;
 	}
 
 	public void setEmployments(List<Employment> employments) {
-		Employments = employments;
+		this.employments = employments;
 	}
 
 	@Override
 	public String toString() {
 		return "User [email=" + email + ", pass=" + pass + ", name=" + name + ", phoneNum=" + phoneNum
 				+ ", userRegDate=" + userRegDate + ", recentLogin=" + recentLogin + ", mainFoot=" + mainFoot
-				+ ", position=" + position + ", teamMembers=" + teamMembers + ", Employments=" + Employments + "]";
+				+ ", position=" + position + ", teamMembers=" + teamMembers + ", employments=" + employments + "]";
 	}
+
 } 

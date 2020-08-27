@@ -1,0 +1,29 @@
+package com.footBallTogether.www.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.footBallTogether.www.dto.User;
+import com.footBallTogether.www.service.FootBallTogetherService_LJH;
+
+@RestController
+@RequestMapping("footBallTogether")
+public class FootBallTogetherController_LJH {
+	
+	@Autowired
+	private FootBallTogetherService_LJH footBallTogetherService_LJH;
+	
+	@GetMapping("user")
+	public ResponseEntity<User> login(){//@RequestBody User user
+		System.out.println("실행1");
+		//User rUser = footBallTogetherService_LJH.selectUser(user);
+		//if(rUser==null) return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+		//else return new ResponseEntity<User>(rUser,HttpStatus.OK);
+		return null;
+	}
+}

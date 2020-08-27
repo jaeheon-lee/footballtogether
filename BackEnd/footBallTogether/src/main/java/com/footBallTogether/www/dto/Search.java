@@ -2,19 +2,18 @@ package com.footBallTogether.www.dto;
 
 public class Search {
 	private int searchId;
-	private int matchInfoId;
 	private int teamIdGiver;
 	private int teamIdTaker;
 	private int teamMemberIdGiver;
 	private int teamMemberIdTaker;
-	private int searchtStatus;
-	
+	private int searchStatus;
+	private int matchInfoId;
 	public Search() {
 		super();
 	}
 
 	public Search(int searchId, int matchInfoId, int teamIdGiver, int teamIdTaker, int teamMemberIdGiver,
-			int teamMemberIdTaker, int searchtStatus) {
+			int teamMemberIdTaker, int searchStatus) {
 		super();
 		this.searchId = searchId;
 		this.matchInfoId = matchInfoId;
@@ -22,20 +21,20 @@ public class Search {
 		this.teamIdTaker = teamIdTaker;
 		this.teamMemberIdGiver = teamMemberIdGiver;
 		this.teamMemberIdTaker = teamMemberIdTaker;
-		this.searchtStatus = searchtStatus;
+		this.searchStatus = searchStatus;
 	}
 	
 	
 
 	public Search(int matchInfoId, int teamIdGiver, int teamIdTaker, int teamMemberIdGiver, int teamMemberIdTaker,
-			int searchtStatus) {
+			int searchStatus) {
 		super();
 		this.matchInfoId = matchInfoId;
 		this.teamIdGiver = teamIdGiver;
 		this.teamIdTaker = teamIdTaker;
 		this.teamMemberIdGiver = teamMemberIdGiver;
 		this.teamMemberIdTaker = teamMemberIdTaker;
-		this.searchtStatus = searchtStatus;
+		this.searchStatus = searchStatus;
 	}
 
 	public int getSearchId() {
@@ -62,14 +61,14 @@ public class Search {
 		return teamMemberIdTaker;
 	}
 
-	public int getSearchtStatus() {
-		return searchtStatus;
+	public int getsearchStatus() {
+		return searchStatus;
 	}
 
 	@Override
 	public String toString() {
 		return "Search [searchId=" + searchId + ", matchInfoId=" + matchInfoId + ", teamIdGiver=" + teamIdGiver
 				+ ", teamIdTaker=" + teamIdTaker + ", teamMemberIdGiver=" + teamMemberIdGiver + ", teamMemberIdTaker="
-				+ teamMemberIdTaker + ", searchtStatus=" + searchtStatus + "]";
+				+ teamMemberIdTaker + ", searchStatus=" + searchStatus + "]";
 	}
 }

@@ -2,12 +2,12 @@ package com.footBallTogether.www.dto;
 
 public class Assignment {
 	private String assignmentId;
-	private int matchInfoId;
 	private int teamIdGiver;
 	private int teamIdTaker;
 	private int teamMemberIdGiver;
 	private int teamMemberIdTaker;
 	private int assignmentStatus;
+	private int matchInfoId;
 	
 	public Assignment() {
 		super();

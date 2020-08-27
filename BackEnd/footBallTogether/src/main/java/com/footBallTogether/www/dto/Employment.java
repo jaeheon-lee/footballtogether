@@ -2,11 +2,11 @@ package com.footBallTogether.www.dto;
 
 public class Employment {
 	private int employmentId;
-	private int matchInfoId;
 	private int teamIdGiver;
 	private int teamMemberIdGiver;
 	private int employmentStatus;
 	private String email;
+	private int matchInfoId;
 	
 	public Employment() {
 		super();

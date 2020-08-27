@@ -3,53 +3,116 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="sql.pms.mapper">
-	<insert id="insert" parameterType="phone">
-		INSERT INTO
-		phones(num, model, price, vcode)
-		VALUES (#{num}, #{model}, #{price}, #{vcode})
-	</insert>
-	
-	<resultMap type="phone" id="phoneWithCompany">
-		<id column="num" property="num"/>
-		<result column="model" property="model"/>
-		<result column="price" property="price"/>
-		<result column="vcode" property="vcode"/>
-		<association property="company" javaType="company">
-			<id column="vcode" property="vcode"/>
-			<result column="vendor" property="vendor"/>
-		</association>
+<mapper namespace="sql.footBAllTogether.mapper1">
+	<resultMap type="user" id="userSelectRM">
+		<result property="email" column="email" />
+		<result property="pass" column="pass" />
+		<result property="name" column="name" />
+		<result property="phoneNum" column="phone_num" />
+		<result property="userRegDate" column="user_reg_date" />
+		<result property="recentLogin" column="recent_login" />
+		<result property="mainFoot" column="main_foot" />
+		<result property="position" column="position" />
 	</resultMap>
-	
-	<!--  Dynamic Query : selectAll+ selectOne-->
-	<select id="select" parameterType="phone" resultMap="phoneWithCompany">
-		SELECT p.num, p.model, p.price, p.vcode, c.vcode, c.vendor
-		FROM phones p
-		JOIN company c USING(vcode)
-		<if test="num!=null">
-		WHERE num=#{num}
+
+	<sql id="select-user">
+		SELECT email, pass, name,
+		phone_num, user_reg_date,
+		recent_login,main_foot, position
+		FROM user
+	</sql>
+
+	<!-- 1. 로그인  2. id로 user 찾기-->
+	<select id="selectUser" parameterType="user" resultType="user" resultMap="userSelectRM">
+		<include refid="select-user" />
+		WHERE email=#{email}
+		<if test="pass!=null">
+			AND pass=#{pass}
 		</if>
 	</select>
-	
-	<!--  Dynamic Query -->
-	<select id="selectUser" parameterType="userinfo" resultType="userinfo">
-		SELECT 
-		id, pw 
-		FROM userinfo
-		WHERE id=#{id}
-		<if test="pw!=null">
-			AND pw=#{pw}
-		</if>
-	</select>
-	
-	<delete id="delete" parameterType="list">
-		DELETE
-		FROM phones
-		WHERE num in
-		<foreach collection="list" item="num" open="(" close=")" separator=",">
-			#{num}
-		</foreach>
-	</delete>
+
+	<!-- assignment <sql id="select-assignment"> SELECT assignment_id, team_id_giver, 
+		team_id_taker, team_member_id_giver, team_member_id_taker, assignment_status, 
+		match_info_id FROM assignment </sql> <resultMap type="assignment" id="assignmentSelectRM"> 
+		<result property="assignmentId" column="assignment_id" /> <result property="teamIdGiver" 
+		column="team_id_giver" /> <result property="teamIdTaker" column="team_id_taker" 
+		/> <result property="teamMemberIdGiver" column="team_member_id_giver" /> 
+		<result property="teamMemberIdTaker" column="team_member_id_taker" /> <result 
+		property="assignmentStatus" column="assignment_status" /> <result property="matchInfoId" 
+		column="match_info_id" /> </resultMap> employment <sql id="select-employment"> 
+		SELECT employment_id, team_id_giver, team_member_id_giver, employeement_status, 
+		email, match_info_id FROM employment </sql> <resultMap type="employment" 
+		id="employmentSelectRM"> <result property="employmentId" column="employment_id" 
+		/> <result property="teamIdGiver" column="team_id_giver" /> <result property="teamMemberIdGiver" 
+		column="team_id_taker" /> <result property="employmentStatus" column="employeement_status" 
+		/> <result property="email" column="email" /> <result property="matchInfoId" 
+		column="match_info_id" /> </resultMap> search <sql id="select-search"> SELECT 
+		search_id, team_id_giver, team_id_taker, team_member_id_giver, team_member_id_taker, 
+		search_status, match_info_id FROM search </sql> <resultMap type="search" 
+		id="searchSelectRM"> <result property="searchId" column="search_id" /> <result 
+		property="teamIdGiver" column="team_id_giver" /> <result property="teamIdTaker" 
+		column="team_id_taker" /> <result property="teamMemberIdGiver" column="team_member_id_giver" 
+		/> <result property="teamMemberIdTaker" column="team_member_id_taker" /> 
+		<result property="searchStatus" column="search_status" /> <result property="matchInfoId" 
+		column="match_info_id" /> </resultMap> matchReview <sql id="select-matchReview"> 
+		SELECT attendant_id, manner_promise, manner_contact, manner_rule, manner_body_fight, 
+		manner_slang,manner_smoking,manner_uniform,manner_payment, manner_arrangement, 
+		FROM match_review </sql> <resultMap type="matchReview" id="matchReviewSelectRM"> 
+		<id property="attendantId" column="attendant_id" /> <result property="mannerPromise" 
+		column="manner_promise" /> <result property="mannerContact" column="manner_contact" 
+		/> <result property="mannerRule" column="manner_rule" /> <result property="mannerBodyFight" 
+		column="manner_body_fight" /> <result property="mannerSlang" column="manner_slang" 
+		/> <result property="mannerSmoking" column="manner_smoking" /> <result property="mannerUniform" 
+		column="manner_uniform" /> <result property="mannerPayment" column="manner_payment" 
+		/> <result property="mannerArrangement" column="manner_arrangement" /> </resultMap> 
+		attendant <sql id="select-attendant"> SELECT attendant_id, match_schedule_id, 
+		team_member_id, attendance FROM attendant </sql> <resultMap type="attendant" 
+		id="attendantSelectRM"> <id property="attendantId" column="attendant_id" 
+		/> <result property="matchScheduleId" column="match_schedule_id" /> <result 
+		property="teamMemberId" column="team_member_id" /> <result property="attendance" 
+		column="attendance" /> <association property="matchReview" javaType="matchReview"> 
+		<id property="attendantId" column="attendant_id" /> <result property="mannerPromise" 
+		column="manner_promise" /> <result property="mannerContact" column="manner_contact" 
+		/> <result property="mannerRule" column="manner_rule" /> <result property="mannerBodyFight" 
+		column="manner_body_fight" /> <result property="mannerSlang" column="manner_slang" 
+		/> <result property="mannerSmoking" column="manner_smoking" /> <result property="mannerUniform" 
+		column="manner_uniform" /> <result property="mannerPayment" column="manner_payment" 
+		/> <result property="mannerArrangement" column="manner_arrangement" /> </association> 
+		</resultMap> <select id="selectAttendant" parameterType="attendant" resultMap="attendantSelectRM"> 
+		SELECT a.attendant_id, a.match_schedule_id, a.team_member_id, a.attendance, 
+		m.attendant_id, m.manner_promise, m.manner_contact, m.manner_rule, m.manner_body_fight, 
+		m.manner_slang, m.manner_smoking, m.manner_uniform, m.manner_payment FROM 
+		attendant a JOIN matchReview m USING(attendant_id) <if test="num!=null"> 
+		WHERE a.attendant_id=#{attendantId} </if> </select> matchSchedule <sql id="selectMatchSchedule"> 
+		SELECT match_schedule_id, team_id, match_info_id FROM match_schedule </sql> 
+		<resultMap type="matchSchedule" id="matchScheduleSelectRM"> <id property="matchScheduleId" 
+		column="match_schedule_id" /> <result property="teamId" column="team_id" 
+		/> <result property="matchInfoId" column="match_info_id" /> </resultMap> 
+		<select id="selectMatchSchedule" parameterType="matchSchedule" resultMap="matchScheduleSelectRM"> 
+		select m.matchSchedule_id, m.team_id, m.matchInfo_id, a.attendant_id, a.matchSchedule_id, 
+		a.teamMember_id, a.attendance from matchScheduleId m left outer join Attendant 
+		a on m.matchSchedule_id = a.matchSchedule_id <if test="matchScheduleId!=null"> 
+		WHERE m.matchSchedule_id=#{matchScheduleId} </if> </select> matchInfo <sql 
+		id="selectMatchInfo"> SELECT match_info_id, schedule, away_id, stadium, stadium_type 
+		FROM match_info </sql> <resultMap type="matchInfo" id="matchInfoSelectRM"> 
+		<id property="matchInfoId" column="match_info_id" /> <result property="schedule" 
+		column="schedule" /> <result property="awayId" column="away_id" /> <result 
+		property="stadium" column="stadium" /> <result property="stadiumType" column="stadium_type" 
+		/> </resultMap> <resultMap id="testMap" type="com.test.Tester"> <id column="no" 
+		property="no" /> <result column="col" property="col" /> <association property="tester" 
+		resultMap="tester1" columnPrefix="t1_" /> </resultMap> <resultMap id="tester1" 
+		type="com.test.Tester"> <id column="no" property="no" /> <result column="col" 
+		property="col" /> <association property="tester" resultMap="tester2" columnPrefix="t2_" 
+		/> </resultMap> <resultMap id="tester2" type="com.test.Tester"> <id column="no" 
+		property="no" /> <result column="col" property="col" /> </resultMap> Dynamic 
+		Query : selectAll+ selectOne <select id="select" parameterType="phone" resultMap="phoneWithCompany"> 
+		SELECT p.num, p.model, p.price, p.vcode, c.vcode, c.vendor FROM phones p 
+		JOIN company c USING(vcode) <if test="num!=null"> WHERE num=#{num} </if> 
+		</select> Dynamic Query <select id="selectUser" parameterType="userinfo" 
+		resultType="userinfo"> SELECT id, pw FROM userinfo WHERE id=#{id} <if test="pw!=null"> 
+		AND pw=#{pw} </if> </select> <delete id="delete" parameterType="list"> DELETE 
+		FROM phones WHERE num in <foreach collection="list" item="num" open="(" close=")" 
+		separator=","> #{num} </foreach> </delete> -->
 </mapper>
 
 

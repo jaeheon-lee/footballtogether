@@ -10,15 +10,14 @@ public class Vote {
 	private String writer;
 	private int voteStatus;
 	private int teamId;
-	private int matchInfo;
+	private int matchInfoId;
 	
 	private List<VoteResult> voteResults;
 	
 	public Vote() {}
-	
 
 	public Vote(String contents, String dueDate, String voteRegDate, String writer, int voteStatus, int teamId,
-			int matchInfo, List<VoteResult> voteResults) {
+			int matchInfoId, List<VoteResult> voteResults) {
 		super();
 		this.contents = contents;
 		this.dueDate = dueDate;
@@ -26,13 +25,12 @@ public class Vote {
 		this.writer = writer;
 		this.voteStatus = voteStatus;
 		this.teamId = teamId;
-		this.matchInfo = matchInfo;
+		this.matchInfoId = matchInfoId;
 		this.voteResults = voteResults;
 	}
 
-
 	public Vote(int voteId, String contents, String dueDate, String voteRegDate, String writer, int voteStatus,
-			int teamId, int matchInfo, List<VoteResult> voteResults) {
+			int teamId, int matchInfoId, List<VoteResult> voteResults) {
 		super();
 		this.voteId = voteId;
 		this.contents = contents;
@@ -41,106 +39,87 @@ public class Vote {
 		this.writer = writer;
 		this.voteStatus = voteStatus;
 		this.teamId = teamId;
-		this.matchInfo = matchInfo;
+		this.matchInfoId = matchInfoId;
 		this.voteResults = voteResults;
 	}
-
 
 	public int getVoteId() {
 		return voteId;
 	}
 
-
 	public void setVoteId(int voteId) {
 		this.voteId = voteId;
 	}
-
 
 	public String getContents() {
 		return contents;
 	}
 
-
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-
 
 	public String getDueDate() {
 		return dueDate;
 	}
 
-
 	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
-
 
 	public String getVoteRegDate() {
 		return voteRegDate;
 	}
 
-
 	public void setVoteRegDate(String voteRegDate) {
 		this.voteRegDate = voteRegDate;
 	}
-
 
 	public String getWriter() {
 		return writer;
 	}
 
-
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-
 
 	public int getVoteStatus() {
 		return voteStatus;
 	}
 
-
 	public void setVoteStatus(int voteStatus) {
 		this.voteStatus = voteStatus;
 	}
-
 
 	public int getTeamId() {
 		return teamId;
 	}
 
-
 	public void setTeamId(int teamId) {
 		this.teamId = teamId;
 	}
 
-
-	public int getMatchInfo() {
-		return matchInfo;
+	public int getMatchInfoId() {
+		return matchInfoId;
 	}
 
-
-	public void setMatchInfo(int matchInfo) {
-		this.matchInfo = matchInfo;
+	public void setMatchInfoId(int matchInfoId) {
+		this.matchInfoId = matchInfoId;
 	}
-
 
 	public List<VoteResult> getVoteResults() {
 		return voteResults;
 	}
 
-
 	public void setVoteResults(List<VoteResult> voteResults) {
 		this.voteResults = voteResults;
 	}
-
 
 	@Override
 	public String toString() {
 		return "Vote [voteId=" + voteId + ", contents=" + contents + ", dueDate=" + dueDate + ", voteRegDate="
 				+ voteRegDate + ", writer=" + writer + ", voteStatus=" + voteStatus + ", teamId=" + teamId
-				+ ", matchInfo=" + matchInfo + ", voteResults=" + voteResults + "]";
+				+ ", matchInfoId=" + matchInfoId + ", voteResults=" + voteResults + "]";
 	}
 	
 	
