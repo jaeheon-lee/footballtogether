@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
     
-  <context:property-placeholder location="classpath:spring/jdbc.properties"/>
+  <context:property-placeholder location="classpath:config/jdbc.properties"/>
   
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${JDBC.Driver}"/>
