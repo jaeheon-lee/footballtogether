@@ -161,7 +161,7 @@ public class footBallTogetherTest {
 //		vo1.setMainFoot("Right");
 //		vo1.setPhoneNum("1234567890");
 //		vo1.setPosition("MF");
-//		boolean result = session.update("sql.football.mapper2.user-update", vo1) ==1 ? true : false;
+//		boolean result = session.update("sql.football.mapper.user-update", vo1) ==1 ? true : false;
 //		session.commit();
 //		System.out.println(result);
 		
@@ -172,7 +172,7 @@ public class footBallTogetherTest {
 //		team1.setTeamName("FC답십리");
 //		team1.setEmblem("img/1.jpg");
 //		team1.setArea("서울시 동대문구");
-//		boolean teamInsert = session.insert("sql.football.mapper2.team-create", team1) == 1 ? true : false;
+//		boolean teamInsert = session.insert("sql.football.mapper.team-create", team1) == 1 ? true : false;
 //		session.commit();
 //		System.out.println(teamInsert);
 
@@ -182,35 +182,35 @@ public class footBallTogetherTest {
 //		tm1.setRegStatus(2); // 매니저는 가입 상태도 변환(일반회원은 필요없음)
 //		tm1.setTeamId(2);
 //		tm1.setEmail("abc1@gmail.com");
-//		boolean tmInsert = session.insert("sql.football.mapper2.team-member-create", tm1) == 1 ? true : false;
+//		boolean tmInsert = session.insert("sql.football.mapper.team-member-create", tm1) == 1 ? true : false;
 //		session.commit();
 //		System.out.println(tmInsert);
 //		
 //		TeamMember tm2 = new TeamMember(); // 일반회원
 //		tm2.setTeamId(2);
 //		tm2.setEmail("abc@gmail.com");
-//		boolean tmInsert2 = session.insert("sql.football.mapper2.team-member-create", tm2) == 1 ? true : false;
+//		boolean tmInsert2 = session.insert("sql.football.mapper.team-member-create", tm2) == 1 ? true : false;
 //		session.commit();
 //		System.out.println(tmInsert2);		
 
 		
 		// 6. 팀멤버 가입 수락 : team-member-reg-update : 팀 가입 수락
-//		boolean tmRegUpdate = session.update("sql.football.mapper2.team-member-reg-update", tm2) == 1 ? true : false;
+//		boolean tmRegUpdate = session.update("sql.football.mapper.team-member-reg-update", tm2) == 1 ? true : false;
 //		session.commit();
 //		System.out.println(tmRegUpdate);
 
 		// 7. 팀멤버 가입 거절: team-member-reg-delete : 팀 가입 거절
-//		boolean tmDelete = session.delete("sql.football.mapper2.team-member-reg-delete", tm2) == 1 ? true : false;
+//		boolean tmDelete = session.delete("sql.football.mapper.team-member-reg-delete", tm2) == 1 ? true : false;
 //		session.commit();
 //		System.out.println(tmDelete);
 
 		// 8. 일반회원의 팀 탈퇴: team-member-quit-update : 팀 탈퇴
-//		boolean tmQuitUpdate = session.update("sql.football.mapper2.team-member-quit-update", tm2) == 1 ? true : false;
+//		boolean tmQuitUpdate = session.update("sql.football.mapper.team-member-quit-update", tm2) == 1 ? true : false;
 //		session.commit();
 //		System.out.println(tmQuitUpdate);
 		
 		//9. 부매니저 권한 임명: team-member-vice-manager : 부매니저 임명
-//		boolean tmViceUpdate = session.update("sql.football.mapper2.team-member-vice-manager", tm2) == 1 ? true : false;
+//		boolean tmViceUpdate = session.update("sql.football.mapper.team-member-vice-manager", tm2) == 1 ? true : false;
 //		session.commit();
 //		System.out.println(tmViceUpdate);
 
@@ -219,12 +219,12 @@ public class footBallTogetherTest {
 		user1.setEmail("1@gmail.com");
 		user1.setPass("1234");
 		user1.setName("Moon");
-		boolean userInfoUpdate = session.update("sql.football.mapper2.user-info-update", user1) == 1 ? true : false;
+		boolean userInfoUpdate = session.update("sql.football.mapper.user-info-update", user1) == 1 ? true : false;
 		session.commit();
 		System.out.println(userInfoUpdate);
 
 		// allUser
-		List<User> list = session.selectList("sql.football.mapper2.allUser");
+		List<User> list = session.selectList("sql.football.mapper.allUser");
 		System.out.println(list);
 		/* <!--=========================기능 끝=================================== --> */
 
