@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sql.football.mapper2">
+	
+	<!-- User Select -->
+	<resultMap type="user" id="userSelectRM">
+		<result property="email" column="email" />
+		<result property="pass" column="pass" />
+		<result property="name" column="name" />
+		<result property="phoneNum" column="phone_num" />
+		<result property="userRegDate" column="user_reg_date" />
+		<result property="recentLogin" column="recent_login" />
+		<result property="mainFoot" column="main_foot" />
+		<result property="position" column="position" />
+	</resultMap>
+	
+	<sql id="user-select-sql">
+		SELECT
+		email, pass, name, phone_num, user_reg_date,
+		recent_login, main_foot, position
+		FROM
+		user
+	</sql>
+	
+	<!-- Alluser SELECT -->
+	<select id="allUser" resultMap="userSelectRM" resultType="user">
+		<include refid="user-select-sql" />
+	</select>
+	
+	
+	<!-- Team Manner Score -->
+	<resultMap type="teamMannerScore"
+		id="teamMannerScoreSelectRM">
+		<id column="team_id" property="teamId" />
+		<result column="manner_promise" property="mannerPromise" />
+		<result column="manner_contact" property="mannerContact" />
+		<result column="manner_rule" property="mannerRule" />
+		<result column="manner_body_fight" property="mannerBodyFight" />
+		<result column="manner_slang" property="mannerSlang" />
+		<result column="manner_smoking" property="mannerSmoking" />
+		<result column="manner_uniform" property="mannerUniform" />
+		<result column="manner_payment" property="mannerPayment" />
+		<result column="manner_arrangement"
+			property="mannerArrangement" />
+	</resultMap>
+	
+	<sql id="tms-select-sql">
+		SELECT
+		team_id,
+		manner_promise, manner_contact, manner_rule,
+		manner_body_fight, manner_slang, manner_smoking,
+		manner_uniform, manner_payment, manner_arrangement
+		FROM
+		team_manner_score
+	</sql>
+	
+	<select id="tms-select-all" parameterType="teamMannerScore"
+		resultMap="teamMannerScoreSelectRM" resultType="teamMannerScore">
+		<include refid="tms-select-sql" />
+		<if test="teamId != 0">
+			WHERE
+			team_id = #{teamId}
+		</if>
+	</select>
+	
+	<!-- Vote Select-->
+	<resultMap type="vote" id="voteSelectRM">
+		<id column="vote_id" property="voteId" />
+		<result column="contents" property="contents" />
+		<result column="due_date" property="dueDate" />
+		<result column="vote_reg_date" property="voteRegDate" />
+		<result column="writer" property="writer" />
+		<result column="vote_status" property="voteStatus" />
+		<result column="team_id" property="teamId" />
+		<result column="match_info_id" property="matchInfoId" />
+	</resultMap>
+	
+	<sql id="vote-select-sql">
+		SELECT
+		vote_id, contents, due_date, vote_reg_date, writer,
+		vote_status, team_id, match_info_id
+		FROM
+		vote
+	</sql>
+	
+	<select id="vote-select-all" parameterType="vote"
+		resultMap="voteSelectRM" resultType="vote">
+		<include refid="vote-select-sql" />
+		<where>
+			<if test="voteId != 0">
+				vote_id = #{voteId}
+			</if>
+			<if test="dueDate != null">
+				due_date = #{dueDate}
+			</if>
+			<if test="teamId != 0">
+				team_id = #{teamId}
+			</if>
+			<if test="matchInfoId != 0">
+				match_info_id = #{matchInfoId}
+			</if>
+		</where>
+	</select>
+	
+
+	<!-- vote result Select-->
+	<resultMap type="voteResult" id="voteResultRM">
+		<result column="vote_id" property="voteId" />
+		<result column="team_member_id" property="teamMemberId" />
+		<result column="attendance" property="attendance" />
+	</resultMap>
+	
+	<sql id="voteResult-select-sql">
+		SELECT
+		vote_id, team_member_id, attendance
+		FROM
+		vote_result
+	</sql>
+	
+	<select id="voteResult" parameterType="voteResult" resultType="">
+		<include refid="voteResult-select-sql" />
+		<if test="voteId != 0">
+			WHERE
+			vote_id = #{voteId}
+		</if>
+	</select>
+	
+	<!-- Team Select -->
+	<resultMap type="team" id="teamSelectRM">
+		<id column="team_id" property="teamId" />
+		<result column="team_name" property="teamName" />
+		<result column="emblem" property="emblem" />
+		<result column="area" property="area" />
+		<result column="stadium_info" property="stadiumInfo" />
+		<result column="uniform_color" property="uniformColor" />
+		<result column="uniform_type" property="uniformType" />
+		<result column="founding_date" property="foundingDate" />
+		<result column="team_reg_date" property="teamRegDate" />
+	</resultMap>
+
+	<sql id="team-select-sql">
+		SELECT
+		team_id, team_name, emblem, area, stadium_info, uniform_color, uniform_type,
+		founding_date, team_reg_date
+		FROM
+		team
+	</sql>
+
+	<select id="team-select-all" parameterType="team"
+		resultMap="teamSelectRM" resultType="team">
+		<include refid="team-select-sql" />
+		<where>
+			<if test="teamId != 0">
+				team_id = #{teamId}
+			</if>
+			<if test="teamName != null">
+				team_name LIKE '%' #{teamName} '%'
+			</if>
+			<if test="teamArea != null">
+				team_area LIKE '%' #{teamArea} '%'
+			</if>
+			<if test="stadiumInfo != null">
+				stadium_info LIKE '%' #{stadiumInfo} '%'
+			</if>
+		</where>
+	</select>
+	
+	<!-- 회원 가입 -->
+	<insert id="user-register" parameterType="user">
+		INSERT INTO
+		user (email, pass, name, phone_num, user_reg_date, recent_login,
+		main_foot, position)
+		VALUES (#{email}, #{pass}, #{name}, #{phoneNum},
+		#{userRegDate}, #{recentLogin}, #{mainFoot}, #{position})
+	</insert>
+	
+	<!-- 회원정보 수정 -->
+	<update id="user-info-update" parameterType="user">
+		UPDATE
+		user
+		SET
+		pass = #{pass},
+		name = #{name},
+		phone_num = #{phoneNum},
+		main_foot = #{mainFoot},
+		position = #{position}
+		WHERE email = #{email}
+	</update>
+
+	<!-- 회원 탈퇴 -->
+	<delete id="user-delete" parameterType="user">
+		DELETE FROM
+		user
+		WHERE
+		email = #{email}
+	</delete>
+	
+	<!-- 팀 생성 -->
+	<insert id="team-create" parameterType="team">
+		INSERT INTO
+		team (team_name, emblem, area, stadium_info, uniform_color, uniform_type,
+		founding_date)
+		VALUES (#{teamName}, #{emblem}, #{area},
+		#{stadiumInfo},
+		#{uniformColor}, #{uniformType}, #{foundingDate})
+	</insert>
+	
+	<!-- 팀 멤버 추가하기 -->
+	<insert id="team-member-create" parameterType="teamMember">
+		INSERT INTO
+		team_member (team_id, email
+		<if test="memberLevel == 1">
+			, member_level
+			, reg_status
+		</if>
+		)
+		VALUES (#{teamId}, #{email}
+		<if test="memberLevel == 1">
+			, #{memberLevel}
+			, #{regStatus}
+		</if>
+		)
+	</insert>
+	
+	
+	<!-- 팀멤버 가입 수락 -->
+	<update id="team-member-reg-update" parameterType="teamMember">
+		UPDATE
+		team_member
+		SET
+		reg_status = 2
+		WHERE
+		team_id = #{teamId} AND email = #{email}
+	</update>
+	
+	<!-- 팀멤버 가입 거절 : 가입 보류 중(reg_status = 1)인 회원만을 대상으로 -->
+	<delete id="team-member-reg-delete" parameterType="teamMember">
+		DELETE
+		FROM team_member
+		WHERE
+		team_id = #{teamId} AND email = #{email}
+		AND reg_status = 1
+	</delete>
+	
+	<!-- 일반회원의 팀 탈퇴 및 매니저 팀원 강퇴 -->
+	<update id="team-member-quit-update" parameterType="teamMember">
+		UPDATE
+		team_member
+		SET
+		reg_status = 3
+		WHERE
+		team_id = #{teamId} AND email = #{email}
+	</update>
+	
+	<!-- 부매니저 권한 임명, 탈퇴 회원이나 가입 보류중인 회원은 제외해야함 -->
+	<update id="team-member-vice-manager" parameterType="teamMember">
+		UPDATE
+		team_member
+		SET
+		member_level = 2
+		WHERE
+		team_id = #{teamId} AND email = #{email}
+		AND reg_status = 2
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+

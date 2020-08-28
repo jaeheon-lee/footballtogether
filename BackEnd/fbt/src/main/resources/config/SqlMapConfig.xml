@@ -2,28 +2,28 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-<properties resource="config/jdbc.properties"></properties>
+	<properties resource="config/jdbc.properties"></properties>
 
 	<typeAliases>
-		 <package name="com.honeycom.fbt.dto"/> 
+		<package name="com.honeycom.fbt.dto" />
 	</typeAliases>
 	<environments default="aa">
 		<environment id="aa">
 			<transactionManager type="JDBC" />
 			<dataSource type="UNPOOLED">
-				<property name="driver" value="${JDBC.Driver}"/>
-				<property name="url" value="${JDBC.ConnectionURL}"/>
-				<property name="username" value="${JDBC.Username}"/>
-				<property name="password" value="${JDBC.Password}"/>
+				<property name="driver" value="${JDBC.Driver}" />
+				<property name="url" value="${JDBC.ConnectionURL}" />
+				<property name="username" value="${JDBC.Username}" />
+				<property name="password" value="${JDBC.Password}" />
 			</dataSource>
-	</environment>
+		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="mapper/footBallTogether_LJH.xml"/>
-<!-- 		<mapper resource="mapper/footBallTogether_MHK.xml"/>
-		<mapper resource="mapper/footBallTogether.xml"/> -->
+		<mapper resource="mapper/footBallTogether_LJH.xml" />
+		<!-- <mapper resource="mapper/footBallTogether_MHK.xml"/> -->
+		<mapper resource="mapper/footBallTogether.xml" />
 	</mappers>
-	
+
 </configuration>
 
 

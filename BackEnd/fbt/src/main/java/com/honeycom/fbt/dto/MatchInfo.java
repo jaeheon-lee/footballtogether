@@ -4,8 +4,8 @@ import java.util.List;
 
 public class MatchInfo {
 	private int matchInfoId;
+	private int homeTeamId;
 	private String schedule;
-	private int awayId;
 	private String stadium;
 	private String stadiumType;
 
@@ -14,10 +14,40 @@ public class MatchInfo {
 	private List<Employment> employeements;
 	private List<Search> searchs;
 	private MatchSchedule matchSchedule;
-	
 
 	public MatchInfo() {
 		super();
+	}
+
+	public MatchInfo(int homeTeamId, String schedule, String stadium, String stadiumType, List<Vote> votes,
+			List<Assignment> assignments, List<Employment> employeements, List<Search> searchs,
+			MatchSchedule matchSchedule) {
+		super();
+		this.homeTeamId = homeTeamId;
+		this.schedule = schedule;
+		this.stadium = stadium;
+		this.stadiumType = stadiumType;
+		this.votes = votes;
+		this.assignments = assignments;
+		this.employeements = employeements;
+		this.searchs = searchs;
+		this.matchSchedule = matchSchedule;
+	}
+
+	public MatchInfo(int matchInfoId, int homeTeamId, String schedule, String stadium, String stadiumType,
+			List<Vote> votes, List<Assignment> assignments, List<Employment> employeements, List<Search> searchs,
+			MatchSchedule matchSchedule) {
+		super();
+		this.matchInfoId = matchInfoId;
+		this.homeTeamId = homeTeamId;
+		this.schedule = schedule;
+		this.stadium = stadium;
+		this.stadiumType = stadiumType;
+		this.votes = votes;
+		this.assignments = assignments;
+		this.employeements = employeements;
+		this.searchs = searchs;
+		this.matchSchedule = matchSchedule;
 	}
 
 	public int getMatchInfoId() {
@@ -28,20 +58,20 @@ public class MatchInfo {
 		this.matchInfoId = matchInfoId;
 	}
 
+	public int getHomeTeamId() {
+		return homeTeamId;
+	}
+
+	public void setHomeTeamId(int homeTeamId) {
+		this.homeTeamId = homeTeamId;
+	}
+
 	public String getSchedule() {
 		return schedule;
 	}
 
 	public void setSchedule(String schedule) {
 		this.schedule = schedule;
-	}
-
-	public int getAwayId() {
-		return awayId;
-	}
-
-	public void setAwayId(int awayId) {
-		this.awayId = awayId;
 	}
 
 	public String getStadium() {
@@ -59,7 +89,6 @@ public class MatchInfo {
 	public void setStadiumType(String stadiumType) {
 		this.stadiumType = stadiumType;
 	}
-
 
 	public List<Vote> getVotes() {
 		return votes;
@@ -101,26 +130,11 @@ public class MatchInfo {
 		this.matchSchedule = matchSchedule;
 	}
 
-	public MatchInfo(String schedule, int awayId, String stadium, String stadiumType, List<Vote> votes,
-			List<Assignment> assignments, List<Employment> employeements, List<Search> searchs,
-			MatchSchedule matchSchedule) {
-		super();
-		this.schedule = schedule;
-		this.awayId = awayId;
-		this.stadium = stadium;
-		this.stadiumType = stadiumType;
-		this.votes = votes;
-		this.assignments = assignments;
-		this.employeements = employeements;
-		this.searchs = searchs;
-		this.matchSchedule = matchSchedule;
-	}
-
 	@Override
 	public String toString() {
-		return "MatchInfo [matchInfoId=" + matchInfoId + ", schedule=" + schedule + ", awayId=" + awayId + ", stadium="
-				+ stadium + ", stadiumType=" + stadiumType + ", votes=" + votes + ", assignments=" + assignments
-				+ ", employeements=" + employeements + ", searchs=" + searchs + ", matchSchedule=" + matchSchedule
-				+ "]";
+		return "MatchInfo [matchInfoId=" + matchInfoId + ", homeTeamId=" + homeTeamId + ", schedule=" + schedule
+				+ ", stadium=" + stadium + ", stadiumType=" + stadiumType + ", votes=" + votes + ", assignments="
+				+ assignments + ", employeements=" + employeements + ", searchs=" + searchs + ", matchSchedule="
+				+ matchSchedule + "]";
 	}
 }

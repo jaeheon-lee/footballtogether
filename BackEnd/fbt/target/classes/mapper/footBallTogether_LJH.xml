@@ -4,6 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="sql.footBAllTogether.mapper1">
+	<!-- user resultMap -->
 	<resultMap type="user" id="userSelectRM">
 		<result property="email" column="email" />
 		<result property="pass" column="pass" />
@@ -15,6 +16,7 @@
 		<result property="position" column="position" />
 	</resultMap>
 
+	<!-- user -->
 	<sql id="select-user">
 		SELECT email, pass, name,
 		phone_num, user_reg_date,
@@ -22,8 +24,9 @@
 		FROM user
 	</sql>
 
-	<!-- 1. 로그인  2. id로 user 찾기-->
-	<select id="selectUser" parameterType="user" resultType="user" resultMap="userSelectRM">
+	<!-- 1. 로그인 2. id로 user 찾기 -->
+	<select id="selectUser" parameterType="user" resultType="user"
+		resultMap="userSelectRM">
 		<include refid="select-user" />
 		WHERE email=#{email}
 		<if test="pass!=null">
@@ -31,88 +34,276 @@
 		</if>
 	</select>
 
-	<!-- assignment <sql id="select-assignment"> SELECT assignment_id, team_id_giver, 
-		team_id_taker, team_member_id_giver, team_member_id_taker, assignment_status, 
-		match_info_id FROM assignment </sql> <resultMap type="assignment" id="assignmentSelectRM"> 
-		<result property="assignmentId" column="assignment_id" /> <result property="teamIdGiver" 
-		column="team_id_giver" /> <result property="teamIdTaker" column="team_id_taker" 
-		/> <result property="teamMemberIdGiver" column="team_member_id_giver" /> 
-		<result property="teamMemberIdTaker" column="team_member_id_taker" /> <result 
-		property="assignmentStatus" column="assignment_status" /> <result property="matchInfoId" 
-		column="match_info_id" /> </resultMap> employment <sql id="select-employment"> 
-		SELECT employment_id, team_id_giver, team_member_id_giver, employeement_status, 
-		email, match_info_id FROM employment </sql> <resultMap type="employment" 
-		id="employmentSelectRM"> <result property="employmentId" column="employment_id" 
-		/> <result property="teamIdGiver" column="team_id_giver" /> <result property="teamMemberIdGiver" 
-		column="team_id_taker" /> <result property="employmentStatus" column="employeement_status" 
-		/> <result property="email" column="email" /> <result property="matchInfoId" 
-		column="match_info_id" /> </resultMap> search <sql id="select-search"> SELECT 
-		search_id, team_id_giver, team_id_taker, team_member_id_giver, team_member_id_taker, 
-		search_status, match_info_id FROM search </sql> <resultMap type="search" 
-		id="searchSelectRM"> <result property="searchId" column="search_id" /> <result 
-		property="teamIdGiver" column="team_id_giver" /> <result property="teamIdTaker" 
-		column="team_id_taker" /> <result property="teamMemberIdGiver" column="team_member_id_giver" 
-		/> <result property="teamMemberIdTaker" column="team_member_id_taker" /> 
-		<result property="searchStatus" column="search_status" /> <result property="matchInfoId" 
-		column="match_info_id" /> </resultMap> matchReview <sql id="select-matchReview"> 
-		SELECT attendant_id, manner_promise, manner_contact, manner_rule, manner_body_fight, 
-		manner_slang,manner_smoking,manner_uniform,manner_payment, manner_arrangement, 
-		FROM match_review </sql> <resultMap type="matchReview" id="matchReviewSelectRM"> 
-		<id property="attendantId" column="attendant_id" /> <result property="mannerPromise" 
-		column="manner_promise" /> <result property="mannerContact" column="manner_contact" 
-		/> <result property="mannerRule" column="manner_rule" /> <result property="mannerBodyFight" 
-		column="manner_body_fight" /> <result property="mannerSlang" column="manner_slang" 
-		/> <result property="mannerSmoking" column="manner_smoking" /> <result property="mannerUniform" 
-		column="manner_uniform" /> <result property="mannerPayment" column="manner_payment" 
-		/> <result property="mannerArrangement" column="manner_arrangement" /> </resultMap> 
-		attendant <sql id="select-attendant"> SELECT attendant_id, match_schedule_id, 
-		team_member_id, attendance FROM attendant </sql> <resultMap type="attendant" 
-		id="attendantSelectRM"> <id property="attendantId" column="attendant_id" 
-		/> <result property="matchScheduleId" column="match_schedule_id" /> <result 
-		property="teamMemberId" column="team_member_id" /> <result property="attendance" 
-		column="attendance" /> <association property="matchReview" javaType="matchReview"> 
-		<id property="attendantId" column="attendant_id" /> <result property="mannerPromise" 
-		column="manner_promise" /> <result property="mannerContact" column="manner_contact" 
-		/> <result property="mannerRule" column="manner_rule" /> <result property="mannerBodyFight" 
-		column="manner_body_fight" /> <result property="mannerSlang" column="manner_slang" 
-		/> <result property="mannerSmoking" column="manner_smoking" /> <result property="mannerUniform" 
-		column="manner_uniform" /> <result property="mannerPayment" column="manner_payment" 
-		/> <result property="mannerArrangement" column="manner_arrangement" /> </association> 
-		</resultMap> <select id="selectAttendant" parameterType="attendant" resultMap="attendantSelectRM"> 
-		SELECT a.attendant_id, a.match_schedule_id, a.team_member_id, a.attendance, 
-		m.attendant_id, m.manner_promise, m.manner_contact, m.manner_rule, m.manner_body_fight, 
-		m.manner_slang, m.manner_smoking, m.manner_uniform, m.manner_payment FROM 
-		attendant a JOIN matchReview m USING(attendant_id) <if test="num!=null"> 
-		WHERE a.attendant_id=#{attendantId} </if> </select> matchSchedule <sql id="selectMatchSchedule"> 
-		SELECT match_schedule_id, team_id, match_info_id FROM match_schedule </sql> 
-		<resultMap type="matchSchedule" id="matchScheduleSelectRM"> <id property="matchScheduleId" 
-		column="match_schedule_id" /> <result property="teamId" column="team_id" 
-		/> <result property="matchInfoId" column="match_info_id" /> </resultMap> 
-		<select id="selectMatchSchedule" parameterType="matchSchedule" resultMap="matchScheduleSelectRM"> 
-		select m.matchSchedule_id, m.team_id, m.matchInfo_id, a.attendant_id, a.matchSchedule_id, 
-		a.teamMember_id, a.attendance from matchScheduleId m left outer join Attendant 
-		a on m.matchSchedule_id = a.matchSchedule_id <if test="matchScheduleId!=null"> 
-		WHERE m.matchSchedule_id=#{matchScheduleId} </if> </select> matchInfo <sql 
-		id="selectMatchInfo"> SELECT match_info_id, schedule, away_id, stadium, stadium_type 
-		FROM match_info </sql> <resultMap type="matchInfo" id="matchInfoSelectRM"> 
-		<id property="matchInfoId" column="match_info_id" /> <result property="schedule" 
-		column="schedule" /> <result property="awayId" column="away_id" /> <result 
-		property="stadium" column="stadium" /> <result property="stadiumType" column="stadium_type" 
-		/> </resultMap> <resultMap id="testMap" type="com.test.Tester"> <id column="no" 
-		property="no" /> <result column="col" property="col" /> <association property="tester" 
-		resultMap="tester1" columnPrefix="t1_" /> </resultMap> <resultMap id="tester1" 
-		type="com.test.Tester"> <id column="no" property="no" /> <result column="col" 
-		property="col" /> <association property="tester" resultMap="tester2" columnPrefix="t2_" 
-		/> </resultMap> <resultMap id="tester2" type="com.test.Tester"> <id column="no" 
-		property="no" /> <result column="col" property="col" /> </resultMap> Dynamic 
-		Query : selectAll+ selectOne <select id="select" parameterType="phone" resultMap="phoneWithCompany"> 
-		SELECT p.num, p.model, p.price, p.vcode, c.vcode, c.vendor FROM phones p 
-		JOIN company c USING(vcode) <if test="num!=null"> WHERE num=#{num} </if> 
-		</select> Dynamic Query <select id="selectUser" parameterType="userinfo" 
-		resultType="userinfo"> SELECT id, pw FROM userinfo WHERE id=#{id} <if test="pw!=null"> 
-		AND pw=#{pw} </if> </select> <delete id="delete" parameterType="list"> DELETE 
-		FROM phones WHERE num in <foreach collection="list" item="num" open="(" close=")" 
-		separator=","> #{num} </foreach> </delete> -->
+	<!-- employment resultMap -->
+	<resultMap type="employment" id="employmentSelectRM">
+		<result property="employmentId" column="employment_id" />
+		<result property="teamIdGiver" column="team_id_giver" />
+		<result property="teamMemberIdGiver"
+			column="team_member_id_giver" />
+		<result property="employmentStatus"
+			column="employeement_status" />
+		<result property="email" column="email" />
+		<result property="matchInfoId" column="match_info_id" />
+	</resultMap>
+
+	<!-- employment -->
+	<sql id="select-employment">
+		SELECT employment_id, team_id_giver, team_member_id_giver,
+		employeement_status,
+		email, match_info_id FROM employment
+	</sql>
+
+	<!-- 1. teamIdGiver의 team아이디로 찾기 2. teamMemberIdGiver의 teamemberId로 찾기 3. 
+		employmentStatus 찾기 4. email로 찾기 5. matchInfoId로 찾기 -->
+	<select id="selectEmployments" parameterType="employment"
+		resultType="employment" resultMap="employmentSelectRM">
+		<include refid="select-employment" />
+		<where>
+			<if test="teamIdGiver !=0">
+				team_id_giver=#{teamIdGiver}
+			</if>
+			<if test="teamMemberIdGiver !=0">
+				team_member_id_giver=#{teamMemberIdGiver}
+			</if>
+			<if test="employmentStatus !=0">
+				employeement_status=#{employmentStatus}
+			</if>
+			<if test="email !=null">
+				email=#{email}
+			</if>
+			<if test="matchInfoId !=0">
+				match_info_id=#{matchInfoId}
+			</if>
+		</where>
+	</select>
+
+	<!-- TeamMember result map -->
+	<resultMap type="teamMember" id="teamMemberSelectRM">
+		<id column="team_member_id" property="teamMemberId" />
+		<result column="member_reg_date" property="memberRegDate" />
+		<result column="member_level" property="memberLevel" />
+		<result column="participation_count"
+			property="participationCount" />
+		<result column="reg_status" property="regStatus" />
+		<result column="team_id" property="teamId" />
+		<result column="email" property="email" />
+		<result column="sincerity" property="sincerity" />
+	</resultMap>
+	<sql id="select-teamMember">
+		SELECT team_member_id, member_reg_date, member_level,
+		participation_count,
+		reg_status, team_id, email, sincerity
+		FROM
+		team_member
+	</sql>
+	<!-- 1. teamMemberId아이디로 찾기 2. memberLevel로 찾기 3. regStatus로 찾기 4. teamId로 
+		찾기 -->
+	<select id="selectTeamMembers" parameterType="teamMember"
+		resultType="teamMember" resultMap="teamMemberSelectRM">
+		<include refid="select-teamMember" />
+		<where>
+			<if test="teamMemberId !=0">
+				team_member_id=#{teamMemberId}
+			</if>
+			<if test="memberLevel !=0">
+				member_level=#{memberLevel}
+			</if>
+			<if test="regStatus !=0">
+				reg_status=#{regStatus}
+			</if>
+			<if test="teamId !=0">
+				team_id=#{teamId}
+			</if>
+		</where>
+	</select>
+
+
+	<!-- attendants result map -->
+	<sql id="select-attendant"> SELECT attendant_id, match_schedule_id,
+		team_member_id,
+		attendance FROM attendant
+	</sql>
+	<resultMap type="attendant" id="attendantSelectRM">
+		<id property="attendantId" column="attendant_id" />
+		<result property="matchScheduleId" column="match_schedule_id" />
+		<result property="teamMemberId" column="team_member_id" />
+		<result property="attendance" column="attendance" />
+	</resultMap>
+
+	<!--selectAttendants 1. attendantId 2. matchScheduleId 3. teamMemberId 4. 
+		attendance -->
+	<select id="selectAttendants" parameterType="attendant"
+		resultType="attendant" resultMap="attendantSelectRM">
+		<include refid="select-attendant" />
+		<where>
+			<if test="attendantId !=0">
+				attendant_id=#{attendantId}
+			</if>
+			<if test="matchScheduleId !=0">
+				match_schedule_id=#{matchScheduleId}
+			</if>
+			<if test="teamMemberId !=0">
+				team_member_id=#{teamMemberId}
+			</if>
+			<if test="attendance !=0">
+				attendance = #{attendance}
+			</if>
+		</where>
+	</select>
+
+	<!-- matchReview -->
+	<sql id="select-matchReview">
+		SELECT attendant_id, manner_promise, manner_contact,
+		manner_rule,
+		manner_body_fight,
+		manner_slang,manner_smoking,manner_uniform,manner_payment,
+		manner_arrangement
+		FROM match_review
+	</sql>
+	<resultMap type="matchReview" id="matchReviewSelectRM">
+		<id property="attendantId" column="attendant_id" />
+		<result property="mannerPromise" column="manner_promise" />
+		<result property="mannerContact" column="manner_contact" />
+		<result property="mannerRule" column="manner_rule" />
+		<result property="mannerBodyFight" column="manner_body_fight" />
+		<result property="mannerSlang" column="manner_slang" />
+		<result property="mannerSmoking" column="manner_smoking" />
+		<result property="mannerUniform" column="manner_uniform" />
+		<result property="mannerPayment" column="manner_payment" />
+		<result property="mannerArrangement"
+			column="manner_arrangement" />
+	</resultMap>
+
+	<!--selectMatchReview 1. attendantId로 찾기 -->
+	<select id="selectMatchReviews" parameterType="matchReview"
+		resultType="matchReview" resultMap="matchReviewSelectRM">
+		<include refid="select-matchReview" />
+		<where>
+			<if test="attendantId">
+				attendant_id=#{attendantId}
+			</if>
+		</where>
+	</select>
+
+	<!-- assignment -->
+	<sql id="select-assignment"> SELECT assignment_id, team_id_giver,
+		team_id_taker,
+		team_member_id_giver, team_member_id_taker, assignment_status,
+		match_info_id FROM assignment
+	</sql>
+	<resultMap type="assignment" id="assignmentSelectRM">
+		<result property="assignmentId" column="assignment_id" />
+		<result property="teamIdGiver" column="team_id_giver" />
+		<result property="teamIdTaker" column="team_id_taker" />
+		<result property="teamMemberIdGiver"
+			column="team_member_id_giver" />
+		<result property="teamMemberIdTaker"
+			column="team_member_id_taker" />
+		<result property="assignmentStatus" column="assignment_status" />
+		<result property="matchInfoId" column="match_info_id" />
+	</resultMap>
+
+	<!--1. assignmentId 2. teamIdGiver 3. teamMemberIdGiver 4. assignmentStatus 
+		5. matchInfoId -->
+	<select id="selectAssignment" parameterType="assignment"
+		resultType="assignment" resultMap="assignmentSelectRM">
+		<include refid="select-assignment" />
+		<where>
+			<if test="assignmentId != 0 ">
+				assignment_id = #{assignmentId}
+			</if>
+			<if test="teamIdGiver != 0 ">
+				team_id_giver = #{teamIdGiver} OR team_id_taker =
+				#{teamIdGiver}
+			</if>
+			<if test="teamMemberIdGiver != 0 ">
+				team_member_id_giver = #{teamMemberIdGiver}
+				OR
+				team_member_id_taker = #{teamMemberIdGiver}
+			</if>
+			<if test="assignmentStatus != 0 ">
+				assignment_status = #{assignmentStatus}
+			</if>
+			<if test="matchInfoId != 0 ">
+				match_info_id = #{matchInfoId}
+			</if>
+		</where>
+	</select>
+
+
+	<!-- search -->
+	<sql id="select-search"> SELECT
+		search_id, team_id_giver, team_id_taker,
+		team_member_id_giver,
+		team_member_id_taker,
+		search_status, match_info_id
+		FROM search
+	</sql>
+	<resultMap type="search" id="searchSelectRM">
+		<result property="searchId" column="search_id" />
+		<result property="teamIdGiver" column="team_id_giver" />
+		<result property="teamIdTaker" column="team_id_taker" />
+		<result property="teamMemberIdGiver"
+			column="team_member_id_giver" />
+		<result property="teamMemberIdTaker"
+			column="team_member_id_taker" />
+		<result property="searchStatus" column="search_status" />
+		<result property="matchInfoId" column="match_info_id" />
+	</resultMap>
+
+	<!--1. searchId 2. teamIdGiver 3. teamMemberIdGiver 4. assignmentStatus 
+		5. matchInfoId -->
+	<select id="selectSearch" parameterType="search"
+		resultType="search" resultMap="searchSelectRM">
+		<include refid="select-search" />
+		<where>
+			<if test="searchId != 0 ">
+				search_id = #{searchId}
+			</if>
+			<if test="teamIdGiver != 0 ">
+				team_id_giver = #{teamIdGiver} OR team_id_taker =
+				#{teamIdGiver}
+			</if>
+			<if test="teamMemberIdGiver != 0 ">
+				team_member_id_giver = #{teamMemberIdGiver}
+				OR
+				team_member_id_taker = #{teamMemberIdGiver}
+			</if>
+			<if test="searchStatus != 0 ">
+				search_status = #{searchStatus}
+			</if>
+			<if test="matchInfoId != 0 ">
+				match_info_id = #{matchInfoId}
+			</if>
+		</where>
+	</select>
+
+	<!-- matchSchedule -->
+	<sql id="select-matchSchedule">
+		SELECT match_schedule_id, team_id, match_info_id FROM
+		match_schedule
+	</sql>
+	<resultMap type="matchSchedule" id="matchScheduleSelectRM">
+		<id property="matchScheduleId" column="match_schedule_id" />
+		<result property="teamId" column="team_id" />
+		<result property="matchInfoId" column="match_info_id" />
+	</resultMap>
+	<!--1. matchScheduleId 2. teamId 3. matchInfoId -->
+	<select id="selectMatchSchedule" parameterType="matchSchedule"
+		resultMap="matchScheduleSelectRM">
+		<include refid="select-matchSchedule"/>
+		<where>
+			<if test="matchScheduleId != 0">
+				match_schedule_id=#{matchScheduleId}
+			</if>
+			<if test="teamId != 0">
+				team_id=#{teamId}
+			</if>
+			<if test="matchInfoId != 0">
+				match_info_id=#{matchInfoId}
+			</if>
+		</where>
+	</select>
 </mapper>
 
 

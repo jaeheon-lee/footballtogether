@@ -37,32 +37,62 @@ public class Search {
 		this.searchStatus = searchStatus;
 	}
 
+	
+
 	public int getSearchId() {
 		return searchId;
 	}
 
-	public int getMatchInfoId() {
-		return matchInfoId;
+	public void setSearchId(int searchId) {
+		this.searchId = searchId;
 	}
 
 	public int getTeamIdGiver() {
 		return teamIdGiver;
 	}
 
+	public void setTeamIdGiver(int teamIdGiver) {
+		this.teamIdGiver = teamIdGiver;
+	}
+
 	public int getTeamIdTaker() {
 		return teamIdTaker;
+	}
+
+	public void setTeamIdTaker(int teamIdTaker) {
+		this.teamIdTaker = teamIdTaker;
 	}
 
 	public int getTeamMemberIdGiver() {
 		return teamMemberIdGiver;
 	}
 
+	public void setTeamMemberIdGiver(int teamMemberIdGiver) {
+		this.teamMemberIdGiver = teamMemberIdGiver;
+	}
+
 	public int getTeamMemberIdTaker() {
 		return teamMemberIdTaker;
 	}
 
-	public int getsearchStatus() {
+	public void setTeamMemberIdTaker(int teamMemberIdTaker) {
+		this.teamMemberIdTaker = teamMemberIdTaker;
+	}
+
+	public int getSearchStatus() {
 		return searchStatus;
+	}
+
+	public void setSearchStatus(int searchStatus) {
+		this.searchStatus = searchStatus;
+	}
+
+	public int getMatchInfoId() {
+		return matchInfoId;
+	}
+
+	public void setMatchInfoId(int matchInfoId) {
+		this.matchInfoId = matchInfoId;
 	}
 
 	@Override

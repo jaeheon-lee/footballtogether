@@ -1,7 +1,7 @@
 package com.honeycom.fbt.dto;
 
 public class Assignment {
-	private String assignmentId;
+	private int assignmentId;
 	private int teamIdGiver;
 	private int teamIdTaker;
 	private int teamMemberIdGiver;
@@ -13,43 +13,35 @@ public class Assignment {
 		super();
 	}
 
-	public Assignment(String assignmentId, int matchInfoId, int teamIdGiver, int teamIdTaker, int teamMemberIdGiver,
-			int teamMemberIdTaker, int assignmentStatus) {
+	public Assignment(int teamIdGiver, int teamIdTaker, int teamMemberIdGiver, int teamMemberIdTaker,
+			int assignmentStatus, int matchInfoId) {
+		super();
+		this.teamIdGiver = teamIdGiver;
+		this.teamIdTaker = teamIdTaker;
+		this.teamMemberIdGiver = teamMemberIdGiver;
+		this.teamMemberIdTaker = teamMemberIdTaker;
+		this.assignmentStatus = assignmentStatus;
+		this.matchInfoId = matchInfoId;
+	}
+
+	public Assignment(int assignmentId, int teamIdGiver, int teamIdTaker, int teamMemberIdGiver, int teamMemberIdTaker,
+			int assignmentStatus, int matchInfoId) {
 		super();
 		this.assignmentId = assignmentId;
-		this.matchInfoId = matchInfoId;
 		this.teamIdGiver = teamIdGiver;
 		this.teamIdTaker = teamIdTaker;
 		this.teamMemberIdGiver = teamMemberIdGiver;
 		this.teamMemberIdTaker = teamMemberIdTaker;
 		this.assignmentStatus = assignmentStatus;
-	}
-
-	public Assignment(int matchInfoId, int teamIdGiver, int teamIdTaker, int teamMemberIdGiver, int teamMemberIdTaker,
-			int assignmentStatus) {
-		super();
 		this.matchInfoId = matchInfoId;
-		this.teamIdGiver = teamIdGiver;
-		this.teamIdTaker = teamIdTaker;
-		this.teamMemberIdGiver = teamMemberIdGiver;
-		this.teamMemberIdTaker = teamMemberIdTaker;
-		this.assignmentStatus = assignmentStatus;
 	}
 
-	public String getAssignmentId() {
+	public int getAssignmentId() {
 		return assignmentId;
 	}
 
-	public void setAssignmentId(String assignmentId) {
+	public void setAssignmentId(int assignmentId) {
 		this.assignmentId = assignmentId;
-	}
-
-	public int getMatchInfoId() {
-		return matchInfoId;
-	}
-
-	public void setMatchInfoId(int matchInfoId) {
-		this.matchInfoId = matchInfoId;
 	}
 
 	public int getTeamIdGiver() {
@@ -92,11 +84,19 @@ public class Assignment {
 		this.assignmentStatus = assignmentStatus;
 	}
 
+	public int getMatchInfoId() {
+		return matchInfoId;
+	}
+
+	public void setMatchInfoId(int matchInfoId) {
+		this.matchInfoId = matchInfoId;
+	}
+
 	@Override
 	public String toString() {
-		return "Assignment [assignmentId=" + assignmentId + ", matchInfoId=" + matchInfoId + ", teamIdGiver="
-				+ teamIdGiver + ", teamIdTaker=" + teamIdTaker + ", teamMemberIdGiver=" + teamMemberIdGiver
-				+ ", teamMemberIdTaker=" + teamMemberIdTaker + ", assignmentStatus=" + assignmentStatus + "]";
+		return "Assignment [assignmentId=" + assignmentId + ", teamIdGiver=" + teamIdGiver + ", teamIdTaker="
+				+ teamIdTaker + ", teamMemberIdGiver=" + teamMemberIdGiver + ", teamMemberIdTaker=" + teamMemberIdTaker
+				+ ", assignmentStatus=" + assignmentStatus + ", matchInfoId=" + matchInfoId + "]";
 	}
-			
+		
 }

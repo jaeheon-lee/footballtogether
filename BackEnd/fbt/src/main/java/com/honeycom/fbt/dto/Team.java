@@ -15,20 +15,19 @@ public class Team {
 	
 	private TeamMannerScore teamMannerScore;
 	private List<TeamMember> teamMembers;
-	
-	
 	private List<Vote> votes;
 	private List<MatchSchedule> matchSchedules;
 	private List<Assignment> assignments;
 	private List<Employment> employements;
 	private List<Search> searchs;
+	private List<MatchInfo> matchInfo; 
 	
 	public Team() {}
-	
+
 	public Team(String teamName, String emblem, String area, String stadiumInfo, String uniformColor, int uniformType,
 			String foundingDate, String teamRegDate, TeamMannerScore teamMannerScore, List<TeamMember> teamMembers,
 			List<Vote> votes, List<MatchSchedule> matchSchedules, List<Assignment> assignments,
-			List<Employment> employements, List<Search> searchs) {
+			List<Employment> employements, List<Search> searchs, List<MatchInfo> matchInfo) {
 		super();
 		this.teamName = teamName;
 		this.emblem = emblem;
@@ -45,12 +44,14 @@ public class Team {
 		this.assignments = assignments;
 		this.employements = employements;
 		this.searchs = searchs;
+		this.matchInfo = matchInfo;
 	}
 
 	public Team(int teamId, String teamName, String emblem, String area, String stadiumInfo, String uniformColor,
 			int uniformType, String foundingDate, String teamRegDate, TeamMannerScore teamMannerScore,
 			List<TeamMember> teamMembers, List<Vote> votes, List<MatchSchedule> matchSchedules,
-			List<Assignment> assignments, List<Employment> employements, List<Search> searchs) {
+			List<Assignment> assignments, List<Employment> employements, List<Search> searchs,
+			List<MatchInfo> matchInfo) {
 		super();
 		this.teamId = teamId;
 		this.teamName = teamName;
@@ -68,6 +69,7 @@ public class Team {
 		this.assignments = assignments;
 		this.employements = employements;
 		this.searchs = searchs;
+		this.matchInfo = matchInfo;
 	}
 
 	public int getTeamId() {
@@ -198,6 +200,14 @@ public class Team {
 		this.searchs = searchs;
 	}
 
+	public List<MatchInfo> getMatchInfo() {
+		return matchInfo;
+	}
+
+	public void setMatchInfo(List<MatchInfo> matchInfo) {
+		this.matchInfo = matchInfo;
+	}
+
 	@Override
 	public String toString() {
 		return "Team [teamId=" + teamId + ", teamName=" + teamName + ", emblem=" + emblem + ", area=" + area
@@ -205,6 +215,7 @@ public class Team {
 				+ ", foundingDate=" + foundingDate + ", teamRegDate=" + teamRegDate + ", teamMannerScore="
 				+ teamMannerScore + ", teamMembers=" + teamMembers + ", votes=" + votes + ", matchSchedules="
 				+ matchSchedules + ", assignments=" + assignments + ", employements=" + employements + ", searchs="
-				+ searchs + "]";
+				+ searchs + ", matchInfo=" + matchInfo + "]";
 	}
+	
 }

@@ -2,22 +2,25 @@ package com.honeycom.fbt.dto;
 
 public class TeamMannerScore {
 	private int teamId;
-	private int mannerPromise;
-	private int mannerContact;
-	private int mannerRule;
-	private int mannerBodyFight;
-	private int mannerSlang;
-	private int mannerSmoking;
-	private int mannerUniform;
-	private int mannerPayment;
-	private int mannerArrangement;
+	private double mannerPromise;
+	private double mannerContact;
+	private double mannerRule;
+	private double mannerBodyFight;
+	private double mannerSlang;
+	private double mannerSmoking;
+	private double mannerUniform;
+	private double mannerPayment;
+	private double mannerArrangement;
 	
 	
 	public TeamMannerScore() {
 		super();
 	}
-	public TeamMannerScore(int teamId, int mannerPromise, int mannerContact, int mannerRule, int mannerBodyFight,
-			int mannerSlang, int mannerSmoking, int mannerUniform, int mannerPayment, int mannerArrangement) {
+
+
+	public TeamMannerScore(int teamId, double mannerPromise, double mannerContact, double mannerRule,
+			double mannerBodyFight, double mannerSlang, double mannerSmoking, double mannerUniform,
+			double mannerPayment, double mannerArrangement) {
 		super();
 		this.teamId = teamId;
 		this.mannerPromise = mannerPromise;
@@ -30,67 +33,108 @@ public class TeamMannerScore {
 		this.mannerPayment = mannerPayment;
 		this.mannerArrangement = mannerArrangement;
 	}
-	
+
+
 	public int getTeamId() {
 		return teamId;
 	}
+
+
 	public void setTeamId(int teamId) {
 		this.teamId = teamId;
 	}
-	public int getMannerPromise() {
+
+
+	public double getMannerPromise() {
 		return mannerPromise;
 	}
-	public void setMannerPromise(int mannerPromise) {
+
+
+	public void setMannerPromise(double mannerPromise) {
 		this.mannerPromise = mannerPromise;
 	}
-	public int getMannerContact() {
+
+
+	public double getMannerContact() {
 		return mannerContact;
 	}
-	public void setMannerContact(int mannerContact) {
+
+
+	public void setMannerContact(double mannerContact) {
 		this.mannerContact = mannerContact;
 	}
-	public int getMannerRule() {
+
+
+	public double getMannerRule() {
 		return mannerRule;
 	}
-	public void setMannerRule(int mannerRule) {
+
+
+	public void setMannerRule(double mannerRule) {
 		this.mannerRule = mannerRule;
 	}
-	public int getMannerBodyFight() {
+
+
+	public double getMannerBodyFight() {
 		return mannerBodyFight;
 	}
-	public void setMannerBodyFight(int mannerBodyFight) {
+
+
+	public void setMannerBodyFight(double mannerBodyFight) {
 		this.mannerBodyFight = mannerBodyFight;
 	}
-	public int getMannerSlang() {
+
+
+	public double getMannerSlang() {
 		return mannerSlang;
 	}
-	public void setMannerSlang(int mannerSlang) {
+
+
+	public void setMannerSlang(double mannerSlang) {
 		this.mannerSlang = mannerSlang;
 	}
-	public int getMannerSmoking() {
+
+
+	public double getMannerSmoking() {
 		return mannerSmoking;
 	}
-	public void setMannerSmoking(int mannerSmoking) {
+
+
+	public void setMannerSmoking(double mannerSmoking) {
 		this.mannerSmoking = mannerSmoking;
 	}
-	public int getMannerUniform() {
+
+
+	public double getMannerUniform() {
 		return mannerUniform;
 	}
-	public void setMannerUniform(int mannerUniform) {
+
+
+	public void setMannerUniform(double mannerUniform) {
 		this.mannerUniform = mannerUniform;
 	}
-	public int getMannerPayment() {
+
+
+	public double getMannerPayment() {
 		return mannerPayment;
 	}
-	public void setMannerPayment(int mannerPayment) {
+
+
+	public void setMannerPayment(double mannerPayment) {
 		this.mannerPayment = mannerPayment;
 	}
-	public int getMannerArrangement() {
+
+
+	public double getMannerArrangement() {
 		return mannerArrangement;
 	}
-	public void setMannerArrangement(int mannerArrangement) {
+
+
+	public void setMannerArrangement(double mannerArrangement) {
 		this.mannerArrangement = mannerArrangement;
 	}
+
+
 	@Override
 	public String toString() {
 		return "TeamMannerScore [teamId=" + teamId + ", mannerPromise=" + mannerPromise + ", mannerContact="
@@ -98,4 +142,5 @@ public class TeamMannerScore {
 				+ ", mannerSlang=" + mannerSlang + ", mannerSmoking=" + mannerSmoking + ", mannerUniform="
 				+ mannerUniform + ", mannerPayment=" + mannerPayment + ", mannerArrangement=" + mannerArrangement + "]";
 	}
+	
 }

@@ -10,6 +10,7 @@ public class TeamMember {
 	private int regStatus;
 	private int teamId;
 	private String email;
+	private double sincerity;
 	
 	private List<Attendant> attendants;
 	private List<VoteResult> voteResults;
@@ -20,10 +21,10 @@ public class TeamMember {
 	public TeamMember() {
 		super();
 	}
-	
+
 	public TeamMember(String memberRegDate, int memberLevel, int participationCount, int regStatus, int teamId,
-			String email, List<Attendant> attendants, List<VoteResult> voteResults, List<Assignment> assignments,
-			List<Employment> employements, List<Search> searchs) {
+			String email, double sincerity, List<Attendant> attendants, List<VoteResult> voteResults,
+			List<Assignment> assignments, List<Employment> employements, List<Search> searchs) {
 		super();
 		this.memberRegDate = memberRegDate;
 		this.memberLevel = memberLevel;
@@ -31,6 +32,7 @@ public class TeamMember {
 		this.regStatus = regStatus;
 		this.teamId = teamId;
 		this.email = email;
+		this.sincerity = sincerity;
 		this.attendants = attendants;
 		this.voteResults = voteResults;
 		this.assignments = assignments;
@@ -38,10 +40,8 @@ public class TeamMember {
 		this.searchs = searchs;
 	}
 
-
-
 	public TeamMember(int teamMemberId, String memberRegDate, int memberLevel, int participationCount, int regStatus,
-			int teamId, String email, List<Attendant> attendants, List<VoteResult> voteResults,
+			int teamId, String email, double sincerity, List<Attendant> attendants, List<VoteResult> voteResults,
 			List<Assignment> assignments, List<Employment> employements, List<Search> searchs) {
 		super();
 		this.teamMemberId = teamMemberId;
@@ -51,6 +51,7 @@ public class TeamMember {
 		this.regStatus = regStatus;
 		this.teamId = teamId;
 		this.email = email;
+		this.sincerity = sincerity;
 		this.attendants = attendants;
 		this.voteResults = voteResults;
 		this.assignments = assignments;
@@ -114,6 +115,14 @@ public class TeamMember {
 		this.email = email;
 	}
 
+	public double getSincerity() {
+		return sincerity;
+	}
+
+	public void setSincerity(double sincerity) {
+		this.sincerity = sincerity;
+	}
+
 	public List<Attendant> getAttendants() {
 		return attendants;
 	}
@@ -158,7 +167,9 @@ public class TeamMember {
 	public String toString() {
 		return "TeamMember [teamMemberId=" + teamMemberId + ", memberRegDate=" + memberRegDate + ", memberLevel="
 				+ memberLevel + ", participationCount=" + participationCount + ", regStatus=" + regStatus + ", teamId="
-				+ teamId + ", email=" + email + ", attendants=" + attendants + ", voteResults=" + voteResults
-				+ ", assignments=" + assignments + ", employements=" + employements + ", searchs=" + searchs + "]";
+				+ teamId + ", email=" + email + ", sincerity=" + sincerity + ", attendants=" + attendants
+				+ ", voteResults=" + voteResults + ", assignments=" + assignments + ", employements=" + employements
+				+ ", searchs=" + searchs + "]";
 	}
+	
 }
