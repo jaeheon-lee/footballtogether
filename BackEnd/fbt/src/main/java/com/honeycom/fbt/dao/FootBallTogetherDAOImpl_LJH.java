@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.honeycom.fbt.dto.Employment;
 import com.honeycom.fbt.dto.TeamMember;
 import com.honeycom.fbt.dto.User;
+import com.honeycom.fbt.dto.Vote;
+import com.honeycom.fbt.dto.VoteResult;
 
 @Repository
 public class FootBallTogetherDAOImpl_LJH implements FootBallTogetherDAO_LJH{
@@ -30,5 +32,30 @@ public class FootBallTogetherDAOImpl_LJH implements FootBallTogetherDAO_LJH{
 	@Override
 	public List<TeamMember> selectTeamMembers(TeamMember teamMember) {
 		return sqlSession.selectList(NS+"selectTeamMembers", teamMember);
+	}
+
+	@Override
+	public List<Vote> selectVotes(Vote vote) {
+		return sqlSession.selectList(NS+"selectVotes", vote);
+	}
+
+	@Override
+	public int insertVote(Vote vote) {
+		return sqlSession.insert(NS+"insertVote", vote);
+	}
+
+	@Override
+	public boolean insertVoteResult(VoteResult voteResult) {
+		return sqlSession.insert(NS+"insertVoteResult", voteResult) == 1? true : false;
+	}
+
+	@Override
+	public List<VoteResult> selectVoteResults(VoteResult voteResult) {
+		return sqlSession.selectList(NS+"selectVoteResults", voteResult);
+	}
+
+	@Override
+	public boolean updateVoteResult(VoteResult voteResult) {
+		return sqlSession.update(NS+"updateVoteResult", voteResult)==1?true:false;
 	}
 }

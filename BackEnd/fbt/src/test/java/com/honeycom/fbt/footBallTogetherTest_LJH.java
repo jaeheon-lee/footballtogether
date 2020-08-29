@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import com.honeycom.fbt.dto.MatchReview;
 import com.honeycom.fbt.dto.User;
+import com.honeycom.fbt.dto.Vote;
+import com.honeycom.fbt.dto.VoteResult;
 
 public class footBallTogetherTest_LJH {
 
@@ -20,7 +22,7 @@ public class footBallTogetherTest_LJH {
 		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(r);
 		SqlSession session = factory.openSession();
 
-		/* ==================dto select 관련 query ================== */
+		// ==================dto select 관련 query ==================
 
 		/* <!-- 1. 회원: user --> */
 		/*
@@ -71,13 +73,15 @@ public class footBallTogetherTest_LJH {
 		/* <!-- 5.투표: Vote 끝--> */
 
 		/* <!--6.투표결과:voteResult --> */
-		/*
-		 * VoteResult vVo = new VoteResult(); // vVo.setVoteId(1); //vVo.setTeamId(1);
-		 * //vVo.setVoteId(1); //vVo.setTeamMemberId(1); //vVo.setAttendance(1);
-		 * List<VoteResult> rVo =
-		 * session.selectList("sql.footBAllTogether.mapper1.selectVoteResults", vVo);
-		 * System.out.println(rVo);
-		 */
+		
+//		  VoteResult vVo = new VoteResult(); 
+//		  vVo.setVoteId(1);
+//		  vVo.setTeamMemberId(1); 
+//		  vVo.setAttendance(1);
+//		  List<VoteResult> rVo =
+//		  session.selectList("sql.footBAllTogether.mapper1.selectVoteResults", vVo);
+//		  System.out.println(rVo);
+//		 
 		/* <!--6.투표결과:voteResult 끝--> */
 
 		/* <!-- 7. 매치 정보 : match_info --> */
@@ -136,20 +140,20 @@ public class footBallTogetherTest_LJH {
 		 * session.selectList("sql.footBAllTogether.mapper1.selectAttendants", aVo);
 		 * System.out.println(rVo);
 		 */
-		/* <!-- 12.참석자: attendant 끝--> */
+		//<!-- 12.참석자: attendant 끝-->
 
-		/* <!-- 13.매치 리뷰:matchReview --> */
+		//<!-- 13.매치 리뷰:matchReview -->
 		/*
 		 * MatchReview mVo = new MatchReview(); mVo.setAttendantId(1); List<MatchReview>
 		 * rVo = session.selectList("sql.footBAllTogether.mapper1.selectMatchReviews",
 		 * mVo); System.out.println(rVo);
 		 */
-		/* <!-- 13.매치 리뷰:matchReview 끝--> */
+		// <!-- 13.매치 리뷰:matchReview 끝--> 
 		
-		/* ==================dto select 관련 query 끝================== */
+		//<!--==================dto select 관련 query 끝==================-->
 
 		
-		/* <!--=========================기능=================================== --> */
+		//<!--========================= 기본 기능=================================== -->
 
 		// 1. 회원 가입
 		
@@ -166,8 +170,11 @@ public class footBallTogetherTest_LJH {
 //		System.out.println(result);
 		
 		//3. 회원 탈퇴
-		 
-		// 4.팀 생성: team-create
+				
+		//<!--========================= 기본 기능 끝=================================== -->
+		
+		//<!--========================= 팀 생성 및 관리 기능===================================-->
+		// 1.팀 생성: team-create
 //		Team team1 = new Team();
 //		team1.setTeamName("FC답십리");
 //		team1.setEmblem("img/1.jpg");
@@ -176,7 +183,7 @@ public class footBallTogetherTest_LJH {
 //		session.commit();
 //		System.out.println(teamInsert);
 
-		// 5. 팀 멤버 추가하기: team-member-create
+		// 2. 팀 멤버 추가하기: team-member-create
 //		TeamMember tm1 = new TeamMember(); // 매니저
 //		tm1.setMemberLevel(1); // 매니저 팀 창단과 동시에 멤버레벨을 세팅(기본값 노노)
 //		tm1.setRegStatus(2); // 매니저는 가입 상태도 변환(일반회원은 필요없음)
@@ -194,39 +201,70 @@ public class footBallTogetherTest_LJH {
 //		System.out.println(tmInsert2);		
 
 		
-		// 6. 팀멤버 가입 수락 : team-member-reg-update : 팀 가입 수락
+		// 3. 팀멤버 가입 수락 : team-member-reg-update : 팀 가입 수락
 //		boolean tmRegUpdate = session.update("sql.football.mapper1.team-member-reg-update", tm2) == 1 ? true : false;
 //		session.commit();
 //		System.out.println(tmRegUpdate);
 
-		// 7. 팀멤버 가입 거절: team-member-reg-delete : 팀 가입 거절
+		//4. 팀멤버 가입 거절: team-member-reg-delete : 팀 가입 거절
 //		boolean tmDelete = session.delete("sql.football.mapper1.team-member-reg-delete", tm2) == 1 ? true : false;
 //		session.commit();
 //		System.out.println(tmDelete);
 
-		// 8. 일반회원의 팀 탈퇴: team-member-quit-update : 팀 탈퇴
+		// 5. 일반회원의 팀 탈퇴: team-member-quit-update : 팀 탈퇴
 //		boolean tmQuitUpdate = session.update("sql.football.mapper1.team-member-quit-update", tm2) == 1 ? true : false;
 //		session.commit();
 //		System.out.println(tmQuitUpdate);
 		
-		//9. 부매니저 권한 임명: team-member-vice-manager : 부매니저 임명
+		//6. 부매니저 권한 임명: team-member-vice-manager : 부매니저 임명
 //		boolean tmViceUpdate = session.update("sql.football.mapper1.team-member-vice-manager", tm2) == 1 ? true : false;
 //		session.commit();
 //		System.out.println(tmViceUpdate);
 
-		// user-info-update : 회원정보 수정
-		User user1 = new User();
-		user1.setEmail("1@gmail.com");
-		user1.setPass("1234");
-		user1.setName("Moon");
-		boolean userInfoUpdate = session.update("sql.football.mapper1.user-info-update", user1) == 1 ? true : false;
-		session.commit();
-		System.out.println(userInfoUpdate);
-
-		// allUser
-		List<User> list = session.selectList("sql.football.mapper1.allUser");
-		System.out.println(list);
-		/* <!--=========================기능 끝=================================== --> */
-
+//		// user-info-update : 회원정보 수정
+//		User user1 = new User();
+//		user1.setEmail("1@gmail.com");
+//		user1.setPass("1234");
+//		user1.setName("Moon");
+//		boolean userInfoUpdate = session.update("sql.football.mapper1.user-info-update", user1) == 1 ? true : false;
+//		session.commit();
+//		System.out.println(userInfoUpdate);
+//
+//		// allUser
+//		List<User> list = session.selectList("sql.football.mapper1.allUser");
+//		System.out.println(list);
+		//<!--========================= 팀 생성 및 관리 기능 끝===================================-->
+		
+		//<!--=========================경기 참석 투표 기능=================================== -->
+		//1. 투표 추가하기
+//		Vote vote = new Vote();
+//		vote.setContents("자자...");
+//		vote.setDueDate("2020-08-30");
+//		vote.setTeamId(1);
+//		vote.setWriter("이재헌");
+//		vote.setMatchInfoId(1);
+//		session.insert("sql.footBAllTogether.mapper1.insertVote", vote);
+//		session.commit();
+//		System.out.println(vote);
+		
+		//2. 투표 결과 추가하기
+//		VoteResult voteResult = new VoteResult();
+//		voteResult.setAttendance(1);
+//		voteResult.setTeamMemberId(2);
+//		voteResult.setVoteId(30);
+//		
+//		session.insert("sql.footBAllTogether.mapper1.insertVoteResult", voteResult);
+//		session.commit();
+		
+//		//3. 투표 결과 수정하기
+//		VoteResult voteResult = new VoteResult();
+//		voteResult.setAttendance(1);
+//		voteResult.setTeamMemberId(2);
+//		voteResult.setVoteId(30);
+//		
+//		session.insert("sql.footBAllTogether.mapper1.updateVoteResult", voteResult);
+//		session.commit();
+		
+		//<!--=========================경기 참석 투표 끝=================================== -->
 	}
 }

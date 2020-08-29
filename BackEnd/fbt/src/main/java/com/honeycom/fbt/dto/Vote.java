@@ -15,6 +15,13 @@ public class Vote {
 	private List<VoteResult> voteResults;
 	
 	public Vote() {}
+	
+
+	public Vote(int voteStatus) {
+		super();
+		this.voteStatus = voteStatus;
+	}
+
 
 	public Vote(String contents, String dueDate, String voteRegDate, String writer, int voteStatus, int teamId,
 			int matchInfoId, List<VoteResult> voteResults) {

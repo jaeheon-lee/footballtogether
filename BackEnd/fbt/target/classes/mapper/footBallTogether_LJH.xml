@@ -65,7 +65,7 @@
 	</resultMap>
 	<!--팀멤버 select -->
 	<!-- 1. 팀멤버 아이디로 찾기 2. 팀권한으로(teamMemberLevel) 찾기 (1:매니저, 2:부매니저, 3: 일반팀원) 
-		3. 등록 상태(1:대기, 2:등록, 3: 탈퇴) 4. 등록된 팀 ID로 찾기 -->
+		3. 등록 상태(1:대기, 2:등록, 3: 탈퇴) 4. 등록된 팀 ID로 찾기 5. Email 로 찾기 -->
 	<select id="selectTeamMembers" parameterType="teamMember"
 		resultType="teamMember" resultMap="teamMemberSelectRM">
 		<include refid="select-teamMember" />
@@ -81,6 +81,9 @@
 			</if>
 			<if test="teamId !=0">
 				team_id=#{teamId}
+			</if>
+			<if test="email != null">
+				email=#{email}
 			</if>
 		</where>
 	</select>
@@ -231,13 +234,16 @@
 		resultType="voteResult" resultMap="voteResultRM">
 		<include refid="select-voteResult" />
 		<where>
-			<if test="voteId != 0">
+			<if test="voteId != 0 and teamMemberId != 0 and attendance != 0">
+				vote_id = #{voteId} and team_member_id = #{teamMemberId}
+			</if>
+			<if test="voteId != 0 and teamMemberId == 0">
 				vote_id = #{voteId}
 			</if>
-			<if test="teamMemberId != 0">
+			<if test="teamMemberId != 0 and voteId == 0 and attendance == 0">
 				team_member_id = #{teamMemberId}
 			</if>
-			<if test="attendance != 0">
+			<if test="attendance != 0 and voteId == 0 and teamMemberId == 0">
 				attendance = #{attendance}
 			</if>
 		</where>
@@ -524,7 +530,7 @@
 	<!--dto select 관련 query 끝 -->
 
 
-	<!--=========================기능=================================== -->
+	<!--========================= 기본 기능=================================== -->
 	<!-- 1. 회원 가입 -->
 	<insert id="user-register" parameterType="user">
 		INSERT INTO
@@ -561,8 +567,9 @@
 		email = #{email}
 	</delete>
 	<!-- 회원 탈퇴 끝 -->
-
-	<!-- 4.팀 생성 -->
+	<!--========================= 기본 기능 끝=================================== -->
+	<!--========================= 팀 생성 및 관리 기능=================================== -->
+	<!-- 1.팀 생성 -->
 	<insert id="team-create" parameterType="team">
 		INSERT INTO
 		team
@@ -574,7 +581,7 @@
 	</insert>
 	<!-- 팀 생성 끝 -->
 
-	<!-- 5. 팀 멤버 추가하기 -->
+	<!-- 2. 팀 멤버 추가하기 -->
 	<insert id="team-member-create" parameterType="teamMember">
 		INSERT INTO
 		team_member (team_id, email
@@ -592,8 +599,7 @@
 	</insert>
 	<!-- 팀 멤버 추가하기 끝 -->
 
-
-	<!-- 6. 팀멤버 가입 수락 -->
+	<!-- 3. 팀멤버 가입 수락 -->
 	<update id="team-member-reg-update" parameterType="teamMember">
 		UPDATE
 		team_member
@@ -605,7 +611,7 @@
 	</update>
 	<!-- 팀멤버 가입 수락 끝 -->
 
-	<!-- 7. 팀멤버 가입 거절 : 가입 보류 중(reg_status = 1)인 회원만을 대상으로 -->
+	<!-- 4. 팀멤버 가입 거절 : 가입 보류 중(reg_status = 1)인 회원만을 대상으로 -->
 	<delete id="team-member-reg-delete" parameterType="teamMember">
 		DELETE
 		FROM
@@ -617,7 +623,7 @@
 	</delete>
 	<!-- 팀멤버 가입 거절 : 가입 보류 중(reg_status = 1)인 회원만을 대상으로 끝 -->
 
-	<!-- 8. 일반회원의 팀 탈퇴 및 매니저 팀원 강퇴 -->
+	<!-- 5. 일반회원의 팀 탈퇴 및 매니저 팀원 강퇴 -->
 	<update id="team-member-quit-update" parameterType="teamMember">
 		UPDATE
 		team_member
@@ -629,7 +635,7 @@
 	</update>
 	<!-- 일반회원의 팀 탈퇴 및 매니저 팀원 강퇴 끝 -->
 
-	<!-- 9.부매니저 권한 임명, 탈퇴 회원이나 가입 보류중인 회원은 제외해야함 -->
+	<!-- 6.부매니저 권한 임명, 탈퇴 회원이나 가입 보류중인 회원은 제외해야함 -->
 	<update id="team-member-vice-manager" parameterType="teamMember">
 		UPDATE
 		team_member
@@ -641,7 +647,42 @@
 		AND reg_status = 2
 	</update>
 	<!-- 부매니저 권한 임명, 탈퇴 회원이나 가입 보류중인 회원은 제외해야함 끝 -->
-<!--=========================기능 끝=================================== -->
+	<!--=========================팀 생성 및 관리 기능 끝=================================== -->
+
+	<!--=========================경기 참석 투표 기능=================================== -->
+	<!-- 1. 투표 추가하기 -->
+	<insert id="insertVote" parameterType="vote"
+		useGeneratedKeys="true" keyProperty="voteId">
+		INSERT INTO
+		vote(contents, due_date,team_id, writer, match_info_id)
+		VALUES(#{contents},#{dueDate}, #{teamId}, #{writer}, #{matchInfoId}
+		)
+		<!-- <selectKey resultType="int" keyProperty="voteId" order="AFTER"> SELECT 
+			LAST_INSERT_ID() </selectKey> -->
+	</insert>
+	<!-- 투표 추가하기 끝 -->
+
+	<!-- 2. 투표 결과 추가하기 -->
+	<insert id="insertVoteResult" parameterType="voteResult">
+		INSERT INTO
+		vote_result(attendance, vote_id,team_member_id)
+		VALUES(#{attendance},#{voteId}, #{teamMemberId})
+	</insert>
+	<!-- 투표 결과 추가하기 끝 -->
+	
+	<!-- 3. 투표 결과 수정하기 -->
+	<update id="updateVoteResult" parameterType="voteResult">
+		UPDATE
+		vote_result
+		SET
+		attendance = #{attendance}
+		WHERE
+		vote_id = #{voteId} AND team_member_id =
+		#{teamMemberId}
+	</update>
+	<!-- 투표 결과 추가하기 끝 -->
+
+	<!--=========================경기 참석 투표 기능 끝=================================== -->
 </mapper>
 
 
