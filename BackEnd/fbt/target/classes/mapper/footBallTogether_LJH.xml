@@ -669,7 +669,7 @@
 		VALUES(#{attendance},#{voteId}, #{teamMemberId})
 	</insert>
 	<!-- 투표 결과 추가하기 끝 -->
-	
+
 	<!-- 3. 투표 결과 수정하기 -->
 	<update id="updateVoteResult" parameterType="voteResult">
 		UPDATE
@@ -677,12 +677,42 @@
 		SET
 		attendance = #{attendance}
 		WHERE
-		vote_id = #{voteId} AND team_member_id =
+		vote_id = #{voteId} AND
+		team_member_id =
 		#{teamMemberId}
 	</update>
 	<!-- 투표 결과 추가하기 끝 -->
-
 	<!--=========================경기 참석 투표 기능 끝=================================== -->
+
+	<!--=========================.매치 정보 작성=================================== -->
+	<!--1. matchInfo 작성하기 -->
+	<insert id="insertMatchInfo" parameterType="matchInfo"
+		useGeneratedKeys="true" keyProperty="matchInfoId">
+		INSERT INTO
+		match_info
+		(home_team_id, schedule, stadium, stadium_type)
+		VALUES (#{homeTeamId},
+		#{schedule}, #{stadium}, #{stadiumType})
+	</insert>
+	<update id="updateVoteResult" parameterType="voteResult">
+		UPDATE
+		match_info
+		SET
+		<if test="schedule !=null">
+			schedule = #{schedule}
+		</if>
+		<if test="stadium !=null">
+			stadium = #{stadium}
+		</if>
+		v
+		<if test="stadium_type !=null">
+			stadium_type = #{stadium_type}
+		</if>
+		WHERE
+		match_info_id = #{matchInfoId}
+	</update>
+	<!--=========================매치 정보 작성 끝=================================== -->
+
 </mapper>
 
 

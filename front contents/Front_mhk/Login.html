@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FootBallTogether - Login </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+        @font-face {
+            font-family: "fbB";
+            src: url("font/NEXONFootballGothicB.ttf");
+        }
+        @font-face {
+            font-family: "fbL";
+            src: url("font/NEXONFootballGothicL.ttf");
+        }
+
+        body {background-color: #22333A; font-family: 'fbL';}
+        section {width: 500px; height: 780px; background : rgba(196, 196, 196, 0.2); margin : 50px auto; 
+            padding-top:60px; box-sizing: border-box; border-radius: 5px;}
+        .logo {width: 400px; height: 70px; color: white; font-size: xx-large; 
+            border: 7px solid #3FDC9D; border-radius: 50px; margin : 0 auto; text-align: center; padding-top:30px;}
+        .slogan {width : 500px; margin : 20px auto; color : #939E9A; text-align : center; font-size: larger;}
+        .login_img {width: 350px; margin: 0 auto; align-content: center;}
+        .login_form {width: 450px; height: 120px; margin: 0 auto; box-sizing: border-box; padding-top:30px}
+        label {color: #939E9A;  font-size:medium;}
+        #login_form_label {float:left; margin-left:50px; line-height: 40px;}
+        #login_form_input {float:left; margin-left:15px; line-height: 40px; margin-bottom:15px;}
+        .login_text {width:250px; height: 25px; background-color: #939E9A; border-radius: 12px; 
+            border: 1px solid #ccc; letter-spacing: 2px; padding-left:10px;}
+        .forgot_pass {clear:both; width:100%; font-size:small; color: #939E9A; text-align : center;}
+        .login_signup {background-color: #286053; width:300px; height:70px; border-radius: 12px; margin: 0 auto; 
+            color:#3DD598; font-size:small; text-align:center; padding-top:18px; box-sizing: border-box; line-height: 20px;}
+        a {text-decoration: none;}
+    </style>
+</head>
+<body>
+    <section>
+        <div class="logo">FootBallTogether</div>
+        <div class="slogan">Easy To Manage, Happy To Play</div><br>
+
+        <div class="login_img">
+            <img src="img/login4.png" height="150px">
+        </div>
+        <div class="login_form">
+            <form action="login.jsp">
+                <div id="login_form_label">
+                    <label>E-mail</label><br>
+                    <label>Password</label>
+                </div>
+                <div id="login_form_input">
+                    <input type="text" class="login_text" name="user_id"><br>
+                    <input type="password" class="login_text" name="user_pass">
+                </div>
+            </form>
+            
+            <div class="forgot_pass">
+                <span>비밀번호를 잊으셨나요?</span>&nbsp;<a href="#" style="color:white;">비밀번호 재설정</a>
+            </div>
+        </div>
+        <br><br><br>
+        <div class="login_signup">
+            FootBallTogether가 처음이신가요?<br>
+            <a href="SignUp.html" style="color:yellow;" >- 회원가입하기 -</a>
+        </div>
+
+    </section>
+    
+</body>
+</html>

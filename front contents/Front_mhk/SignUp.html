@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        @font-face {
+            font-family: "fbB";
+            src: url("font/NEXONFootballGothicB.ttf");
+        }
+        @font-face {
+            font-family: "fbL";
+            src: url("font/NEXONFootballGothicL.ttf");
+        }
+        
+        body {background-color: #22333A; font-family: 'fbL';}
+        section {width: 500px; height: 780px; background : rgba(196, 196, 196, 0.2); margin : 50px auto; 
+            padding-top:60px; box-sizing: border-box; border-radius: 5px;}
+        .logo {width: 400px; height: 70px; color: white; font-size: xx-large; 
+            border: 7px solid #3FDC9D; border-radius: 50px; margin : 0 auto; text-align: center; padding-top:30px;}
+        .slogan {width : 500px; margin : 20px auto; color : #939E9A; text-align : center; font-size: larger;}
+        .signup_form {width: 250px;  margin: 0 auto; line-height: 40px; color: #939E9A; align-content: center; text-align: center;}
+        .signup_form_input {width:250px; height: 25px; background-color: #939E9A; border-radius: 12px; 
+            border: 1px solid #ccc; letter-spacing: 2px; padding-left:10px; color: black;}
+        button {background: #3FDC9D; color: white; width:200px; padding: 20px; border: none; transition: all 0.5s; 
+            cursor:pointer; margin:5px; font-family: inherit; border-radius: 10px;}
+        button span {cursor:pointer; display: inline-block; position:relative; transition:0.5s;}
+        button span::after {content:'\003e\003e'; position: absolute; opacity: 0; top: 0; right: -20px; transition:0.5s;}
+        button:hover span {padding-right:25px;}
+        button:hover span::after {opacity: 1; right:0;}
+    </style>
+</head>
+<body>
+    <section id="app">
+        <div class="logo">FootBallTogether</div>
+        <div class="slogan">Easy To Manage, Happy To Play</div><br>
+        <div class="signup_form">
+            <form action="#">
+                <span>필수 입력사항 </span><br>
+                <div>
+                    <input type="text" class="signup_form_input" name="email" placeholder="E-mail"><br>
+                </div>
+                <input type="password" class="signup_form_input" name="pass" placeholder="비밀번호"><br>
+                <input type="text" class="signup_form_input" name="name" placeholder="이름"><br>
+
+                <span>선택 입력사항</span><br>
+                <input type="text" class="signup_form_input" name="phoneNum" placeholder="핸드폰 번호"><br>
+                <input type="text" class="signup_form_input" name="mainFoot" placeholder="주발"><br>
+                <input type="text" class="signup_form_input" name="position" placeholder="포지션"><br><br>
+                <button type="submit"><span>회원 가입</span></button>
+            </form>
+        </div>
+    </section>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    info: null,
+                    errored: false,
+                    loading: true
+                }
+            },
+            mounted() {
+                axios
+                    .get('http://127.0.0.1:8888/fbt/user')
+                    .then(response => (this.info = response.data))
+                    .catch(error => {
+                        console.log(error);
+                        this.errored = true;
+                    })
+                    .finally(() => this.loading = false)
+            }
+        })
+    </script>
+</body>
+</html>

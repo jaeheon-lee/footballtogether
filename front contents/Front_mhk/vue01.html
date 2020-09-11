@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        {{message1}}
+    </div>
+    <div id="app2">
+        <span v-bind:title="message2">이 글 위에 마우스를 올리면 동적으로 바인딩된 title을 볼 수 있음</span>
+    </div>
+    <div id="app3">
+        <span v-if="seen">나 이제 볼 수 있나요?</span>
+    </div>
+    <div id="app4">
+        <ol>
+            <li v-for="todo in todos" v-bind:key="todo.id">{{todo.text}}</li>
+        </ol>
+    </div>
+    <div id="app5">
+        <span>{{message5}}</span>
+        <button v-on:click="reverseMessage">메시지 뒤집기</button>
+    </div>
+    <div id="app6">
+        <span>{{message6}}</span>
+        <span v-once>{{message6}}</span>
+        <button v-on:click="reverseMessage">메시지 뒤집기</button>
+    </div>
+    
+    <script>
+        var app = new Vue({
+            el : "#app",
+            data : {
+                message1 : 'Hello Vue!'
+            }
+        })
+
+        var app2 = new Vue({
+            el : "#app2",
+            data : {
+                message2 : '이 페이지는 ' + new Date() + '에 로드됨'
+            }
+        })
+
+        var app3 = new Vue({
+            el : "#app3",
+            data : {
+                seen : false
+            }
+        })
+
+        var app4 = new Vue({
+            el : "#app4",
+            data : {
+                todos: [
+                    {text : 'JavaScript 배우기', id : 1},
+                    {text : 'Vue 배우기', id : 2},
+                    {text : '무언가 멋진 것을 만들기', id : 3}
+                ]
+            }
+        })
+
+        var app5 = new Vue({
+            el : "#app5",
+            data : {
+                message5 : "안녕하세요"
+            },
+            methods : {
+                reverseMessage : function (){
+                    this.message5 = this.message5.split('').reverse().join('')
+                }
+            }
+        })
+
+        var app6 = new Vue({
+            el : "#app6",
+            data : {
+                message6 : "안녕하세요"
+            },
+            methods : {
+                reverseMessage : function(){
+                    this.message6 = this.message6.split('').reverse().join('')
+                }
+            }
+        })
+
+        
+
+    </script>
+</body>
+</html>

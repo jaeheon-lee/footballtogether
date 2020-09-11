@@ -3,6 +3,7 @@ package com.honeycom.fbt.service;
 import java.util.List;
 
 import com.honeycom.fbt.dto.Employment;
+import com.honeycom.fbt.dto.MatchInfo;
 import com.honeycom.fbt.dto.TeamMember;
 import com.honeycom.fbt.dto.User;
 import com.honeycom.fbt.dto.Vote;
@@ -17,5 +18,5 @@ public interface FootBallTogetherService_LJH {
 	public boolean insertVoteResult(VoteResult voteResult);
 	public List<VoteResult> selectVoteResults(VoteResult voteResult);
 	public boolean updateVoteResult(VoteResult voteResult);
-
+	public int insertMatchInfo(MatchInfo matchInfo);
 }

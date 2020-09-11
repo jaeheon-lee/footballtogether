@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.honeycom.fbt.dto.Employment;
+import com.honeycom.fbt.dto.MatchInfo;
+import com.honeycom.fbt.dto.Search;
 import com.honeycom.fbt.dto.TeamMember;
 import com.honeycom.fbt.dto.User;
 import com.honeycom.fbt.dto.Vote;
@@ -60,7 +62,6 @@ public class FootBallTogetherController_LJH {
 	// 가져오지 않아서(몰라서), 그냥 voteId로 vote 객체를 받아 옵니다.
 	@PostMapping("vote")
 	public ResponseEntity<Vote> createVote(@RequestBody Vote vote) {
-		System.out.println(vote);
 		footBallTogetherService_LJH.insertVote(vote);
 		Vote vote2 = new Vote();
 		vote2.setVoteId(vote.getVoteId());
@@ -114,4 +115,14 @@ public class FootBallTogetherController_LJH {
 		}
 	}
 
+	//4.매치 관련 기능 - 4-3 상대팀 구하는 컨텐츠 작성하기
+	public ResponseEntity<Search> createSearch(MatchInfo matchInfo, Search search){
+		footBallTogetherService_LJH.insertMatchInfo(matchInfo);
+		
+		if (rVote.getVoteId() == 0)
+			return new ResponseEntity<Vote>(HttpStatus.NO_CONTENT);
+		else {
+			return new ResponseEntity<Vote>(rVote, HttpStatus.OK);
+		}
+	}
 }

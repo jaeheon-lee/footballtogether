@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="민해경,이재헌">
+    <meta name="description" content="footballtogether">
+    <meta name="keywords" content="football, 조기축구회, 동호회, football, 축구">
+    <link rel="stylesheet" type="text/css" href="./css/layout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>footballtogether</title>
+    <style>
+        section {
+            width: 100%;
+            height: 700px;
+            background-color: #1f2a2f;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="wrap">
+        <!-- header 시작 -->
+        <header>
+            <div class="container header">
+                <div class="row">
+                    <div class="col s3 menu">
+                        <div class="helper"></div><span style="cursor:pointer"><img src="./assets/menu_24px.png"
+                                class="threeBar"></span>
+                    </div>
+                    <div class="col s6 headerContents">
+                        <div class="helper"></div><span><img id="ballImg" src=" ./assets/ball.png "
+                                alt="ball"></span><span id="headerCon">FootBall Together</span>
+                    </div>
+                    <div class="col s3 headerSub">
+                        <div class="helper"></div>
+                        <div id="slogan">
+                            <p>Easy to manage</p>
+                            <p>Happy to play</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header 끝 -->
+        <!-- nav 시작 -->
+        <div id="navId" class="navClass">
+            <img src="./assets/clear_24px_outlined.svg" class="cancleBtn">
+            <div class="profile">
+                <div class="helper"></div><img src=".\assets\손흥민.jpg"><span class="name">손흥민</span>
+            </div>
+            <div class="dropdown">
+                <div id="dropdownInnerId" class="dropdownInner">
+                    <a class="dropdown-btn"><img class="icon" src="./assets/soccer 2.svg"><span class="navMenu">팀
+                            선택</span><img id="down" src="./assets/arrow_forward_ios_24px.svg"></a>
+                    <div id="myDropdown1" class="dropdown-container">
+                        <a href="#">FC 답십리</a>
+                        <a href="#">FC 왕십리</a>
+                        <a href="#">FC 신답</a>
+                    </div>
+                </div>
+                <div class="dropdownInner">
+                    <a class="dropdown-btn"><img class="icon" src="./assets/매니저.svg"><span class="navMenu">관리자
+                            메뉴</span><img id="down" src="./assets/arrow_forward_ios_24px.svg"></a>
+                    <div id="myDropdown2" class="dropdown-container">
+                        <a href="#">투표</a>
+                        <a href="#">매치</a>
+                        <a href="#">용병</a>
+                        <a href="#">양도</a>
+                        <a href="#">일정</a>
+                        <a href="#">관리</a>
+                    </div>
+                </div>
+                <div class="dropdownInner">
+                    <a class="dropdown-btn"><img class="icon" src="./assets/팀.svg"><span class="navMenu">팀 메뉴</span><img
+                            id="down" src="./assets/arrow_forward_ios_24px.svg"></a>
+                    <div id="myDropdown3" class="dropdown-container">
+                        <a href="#">팀홈</a>
+                        <a href="#">투표</a>
+                        <a href="#">일정</a>
+                        <a href="#">활동</a>
+                        <a href="#">알림</a>
+                    </div>
+                </div>
+                <div class="dropdownInner">
+                    <a class="dropdown-btn"><img class="icon" src="./assets/매니저.svg"><span class="navMenu">개인
+                            메뉴</span><img id="down" src="./assets/arrow_forward_ios_24px.svg"></a>
+                    <div id="myDropdown4" class="dropdown-container">
+                        <a href="#">홈</a>
+                        <a href="#">개인 전체일정</a>
+                        <a href="#">팀 찾기</a>
+                        <a href="#">팀 만들기</a>
+                        <a href="#">용병</a>
+                        <a href="#">전체 알림</a>
+                        <a href="#">개인정보</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- nav 끝 -->
+        <!-- section 시작 -->
+        <section></section>
+        <!-- section 끝 -->
+        <!-- footer 시작 -->
+        <footer>
+            <div class="footerWraper">
+                <div class="footInfo">
+                    <div class="footerIcon"><a href="#"><img src="./assets/알림.svg"></a></div>
+                    <div class="footerCon"><span>알림</span></div>
+                </div>
+                <div class="footInfo">
+                    <div class="footerIcon"><a href="#"><img src="assets/일정.svg"></a></div>
+                    <div class="footerCon"><span>일정</span></div>
+                </div>
+                <div class="footInfo">
+                    <div class="footerIcon"><a href="#"><img src="assets/홈으로.svg"></a></div>
+                    <div class="footerCon"><span>팀홈</span></div>
+                </div>
+                <div class="footInfo">
+                    <div class="footerIcon"><a href="#"><img src="assets/투표.svg"></a></div>
+                    <div class="footerCon"><span>투표</span></div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer 끝 -->
+    </div>
+
+    <!-- <section><span style="font-size:100px;cursor:pointer" onclick="openNav()">open</span></section> -->
+
+    </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
+    <script>
+        $('.threeBar').on('click', function () {
+            console.log("여기1")
+            if ($('#navId').css('width') == '270px') {
+                closeNav();
+            } else {
+                openNav();
+            }
+        })
+        $('.cancleBtn').on('click', function () {
+            closeNav()
+        })
+
+        function openNav() {
+            $('#navId').css('width', '270px');
+        }
+
+        function closeNav() {
+            $('#navId').css('width', '0');
+        }
+    </script>
+    <script>
+        $('.dropdown-btn').on('click', function () {
+            if ($(this).siblings().css("display") == 'block') {
+                $(this).siblings().css('display', 'none');
+
+            } else {
+                var a = $('.dropdown-btn')
+                a.each(function (index, item) {
+                    $(item).siblings().removeClass(".active");
+                    $(item).siblings().css('display', 'none');
+                })
+                $(this).siblings().toggleClass("active");
+                $(this).siblings().css('display', 'block');
+            }
+
+        })
+    </script>
+</body>
+
+</html>

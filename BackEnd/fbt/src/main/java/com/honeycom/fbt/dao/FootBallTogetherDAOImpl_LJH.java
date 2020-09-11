@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.honeycom.fbt.dto.Employment;
+import com.honeycom.fbt.dto.MatchInfo;
 import com.honeycom.fbt.dto.TeamMember;
 import com.honeycom.fbt.dto.User;
 import com.honeycom.fbt.dto.Vote;
@@ -57,5 +58,10 @@ public class FootBallTogetherDAOImpl_LJH implements FootBallTogetherDAO_LJH{
 	@Override
 	public boolean updateVoteResult(VoteResult voteResult) {
 		return sqlSession.update(NS+"updateVoteResult", voteResult)==1?true:false;
+	}
+
+	@Override
+	public int insertMatchInfo(MatchInfo matchInfo) {
+		return sqlSession.insert(NS+"insertMatchInfo", matchInfo);
 	}
 }

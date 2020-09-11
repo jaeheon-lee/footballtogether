@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.honeycom.fbt.dao.FootBallTogetherDAO_LJH;
 import com.honeycom.fbt.dto.Employment;
+import com.honeycom.fbt.dto.MatchInfo;
 import com.honeycom.fbt.dto.TeamMember;
 import com.honeycom.fbt.dto.User;
 import com.honeycom.fbt.dto.Vote;
@@ -57,6 +58,11 @@ public class FootBallTogetherServiceImpl_LJH implements FootBallTogetherService_
 	@Override
 	public boolean updateVoteResult(VoteResult voteResult) {
 		return footBallTogetherDAO_LJH.updateVoteResult(voteResult);
+	}
+
+	@Override
+	public int insertMatchInfo(MatchInfo matchInfo) {
+		return footBallTogetherDAO_LJH.insertMatchInfo(matchInfo);
 	}
 
 

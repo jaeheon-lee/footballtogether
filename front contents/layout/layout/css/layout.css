@@ -1,0 +1,325 @@
+@charset "UTF-8";
+
+/* 넥슨 폰트 */
+@font-face {
+    font-family: nexon;
+    src: url("../fonts/NEXONFootballGothicB.ttf");
+}
+
+/* 여백 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* a 링크 초기화 */
+a {
+    color: #222;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2698cb;
+}
+
+body {
+    background: #22333A;
+}
+
+#wrap {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* header 시작*/
+header {
+    position: fixed;
+    width: 100%;
+    height: 77px;
+    top: 0;
+    left: 0;
+    background-color: #22333a;
+}
+
+.container.header {
+    height: 77px;
+    width: 100%;
+    background-color: #22333a;
+    border-bottom: solid 3px #c4c4c4;
+    border-top: solid 3px #c4c4c4;
+}
+
+.row {
+    height: 77px;
+    width: 100%;
+}
+
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.col.s3.menu,
+.col.s6.headerContents,
+.col.s3.headerSub {
+    height: 77px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.threeBar {
+    display: inline-block;
+    vertical-align: middle;
+    width: 18.8px;
+    height: 20px;
+    object-fit: contain;
+}
+
+#ballImg {
+    display: inline-block;
+    vertical-align: middle;
+    width: 51px;
+    height: 51px;
+    object-fit: contain;
+}
+
+.headerContents {
+    width: 363px;
+    height: 70px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 70px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 70px;
+    letter-spacing: normal;
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#headerCon {
+    padding-left: 15px;
+}
+
+.col.s3.headerSub {
+    text-align: right;
+    padding-right: 19px;
+}
+
+#slogan {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+}
+
+.headerSub {
+    width: 70px;
+    height: 70px;
+    font-family:'nexon';
+    font-size: 20px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+/* header 끝 */
+
+    /*nav 시작  */
+    .navClass {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 77px;
+        left: 0;
+        background-color: #1f2a2f;
+        overflow-x: hidden;
+        transition: 0.2s;
+        overflow-y: unset;
+    }
+
+    .navClass a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #ffffff;
+        display: block;
+        font-family: 'nexon';
+        transition: 0.3s;
+
+    }
+
+    .navClass a:hover {
+        color: #f1f1f1;
+    }
+
+    .navClass .closeBtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    .dropdown-btn {
+        color: initial;
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        outline: none;
+        font-family: 'nexon';
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #ffffff;
+        margin-bottom: 15px;
+
+    }
+
+    .dropdown-btn>* {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    #dropdownInnerId {
+        margin-top: 15px;
+    }
+
+    .dropdownInner a:hover,
+    .dropdown-btn:hover {
+        color: #da7070;
+        background-color: white;
+    }
+
+    .dropdown-container a {
+        text-align: right;
+        padding-right: 40px;
+    }
+
+    .dropdownInner:hover {
+        color: white;
+    }
+
+    .active {
+        background-color: rgb(204, 64, 99);
+        color: white;
+    }
+
+    .dropdown-container {
+        display: none;
+        background-color: #262626;
+        padding-left: 8px;
+        padding-top: 10px;
+        border-bottom: solid 1px;
+    }
+
+
+    
+
+    .profile {
+        width: 100%;
+        height: 90px;
+        border-radius: 5px;
+        background-color: #2b2d33;
+        display: inline-block;
+    }
+
+    .profile img {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+
+    }
+
+    .profile img,.profile span {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 6px 0px 6px 11px;
+
+    }
+
+    .profile .name {
+        height: 23px;
+        font-family: 'nexon';
+        font-size: 23px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.44px;
+        color: rgba(255, 254, 254, 0.76);
+    }
+
+    #down {
+        margin-left: 20px;
+    }
+
+    .icon {
+        width: 25px;
+        height: 25px;
+        color: white;
+        margin-right: 15px;
+    }
+
+    .navMenu {
+        width: 114px;
+    }
+    .cancleBtn{
+        position: absolute;
+        right: 0;
+        width:35px;
+        cursor: pointer;
+    }
+    /* nav 끝 */
+        /* footer 시작 */
+        footer {
+            position: fixed;
+            width: 100%;
+            height: 200;
+            background-color: #191A1D;
+            bottom: 0;
+        }
+
+        .footerCon {
+            text-align: center;
+        }
+
+        .footerCon>span {
+            color: white;
+        }
+
+        .footerIcon>img {
+            width: 45;
+            height: 43;
+        }
+
+        .footerIcon {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+
+        .footInfo {
+            width: 50px;
+            display: inline-block;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+
+        .footerWraper {
+            text-align: center;
+            width: 100%
+        }
+        /* footer 끝 */
