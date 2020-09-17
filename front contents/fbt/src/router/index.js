@@ -1,23 +1,39 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "login",
+    component: () =>
+      import(/* webpackChunkName: "login" */ "../views/Login.vue")
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: "/team",
+    name: "team",
+    component: () => import(/* webpackChunkName: "team" */ "../views/Team.vue")
+  },
+  {
+    path: "/managerMenu",
+    name: "managerMenu",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import(/* webpackChunkName: "managerMenu" */ "../views/ManagerMenu.vue")
+  },
+  {
+    path: "/allTeamMemberMenu",
+    name: "allTeamMemberMenu",
+    component: () =>
+      import(
+        /* webpackChunkName: "allTeamMemberMenu" */ "../views/AllTeamMemberMenu.vue"
+      )
+  },
+  {
+    path: "/privateMenu",
+    name: "privateMenu",
+    component: () =>
+      import(/* webpackChunkName: "privateMenu" */ "../views/PrivateMenu.vue")
   }
 ];
 
