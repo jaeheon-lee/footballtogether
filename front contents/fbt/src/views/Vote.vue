@@ -1,3 +1,8 @@
+<style>
+v-expansion-panel-content__wrap {
+  padding: 0px !important;
+}
+</style>
 <template>
   <div>
     <v-container fluid class="py-0 my-7 px-0 mx-0">
@@ -55,135 +60,84 @@
       </v-row>
       <v-row fluid justify="center" class="py-0 my-0 px-0 mx-5">
         <v-col xl="6" lg="8" cols="12" class="pa-0 ma-0">
-          <v-row fluid justify="center" class="ma-0 pa-0">
-            <v-col cols="3" justtify="center" class="ma-0, pa-0">등록일</v-col>
-            <v-col cols="3" justtify="center" class="ma-0, pa-0"
-              >투표마감일</v-col
+          <v-expansion-panels focusable hover color="red">
+            <v-row
+              class="ma-0 pa-0"
+              style="background-color:#121212;font-size: 0.75rem;inline-height:100%;color:rgba(255, 255, 255, 0.9)"
             >
-            <v-col cols="3" justtify="center" class="ma-0, pa-0">경기일</v-col>
-            <v-col cols="3" justtify="center" class="ma-0, pa-0"
-              >경기장소</v-col
-            >
-          </v-row>
-          <v-row
-            fluid
-            justify="center"
-            class="ma-0 pa-0"
-            v-for="item in desserts"
-            :key="item.name"
-          >
-            <v-col xl="12" lg="12" cols="12" class="pa-0 ma-0">
-              <v-row
-                fluid
-                ="center" class="ma-0, pa-0">{{
-                  item.name
-                }}</v-col>
-                <v-col cols="3" justtify="center" class="ma-0, pa-0">{{
-                  item.calories
-                }}</v-col>
-                <v-col cols="3" justtify="center" class="ma-0, pa-0">{{
-                  item.name
-                }}</v-col>
-                <v-col cols="3" justtify="center" class="ma-0, pa-0">{{
-                  item.calories
-                }}</v-col>
-              </v-row>
-              <v-row
-                fluid
-                justify="center"
-                class="ma-0 pa-0 content"
-                v-bind:style="istoggled ? 'width:100%' : 'display:none'"
-                >ddddddddddddddddddd</v-row
+              <v-col cols="3" class="text-center">등록일</v-col>
+              <v-col cols="3" class="text-center">마감일</v-col>
+              <v-col cols="3" class="text-center">경기일시</v-col>
+              <v-col cols="3" class="text-center">경기장소</v-col>
+            </v-row>
+            <v-expansion-panel v-for="(vote, i) in votes" :key="i">
+              <v-expansion-panel-header
+                hide-actions
+                class="ma-0 pa-0"
+                style="background-color:#121212;font-size: 0.75rem;line-height:100%;color:rgba(255, 255, 255, 0.7)"
               >
-            </v-col>
-          </v-row>
-          <v-simple-table style="border-radius:0px">
-            <template v-slot:default>
-              <thead>
-                <tr>
-                  <th class="text-left">Name</th>
-                  <th class="text-left">Calories</th>
-                  <th class="text-left">Name</th>
-                  <th class="text-left">Calories</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  v-for="(item, i) in desserts"
-                  :key="item.name"
-                  :id="'a' + i"
-                  @click="add('a' + i)"
-                >
-                  <td>
-                    {{ item.name }}
-                  </td>
-                  <td>{{ item.calories }}</td>
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.calories }}</td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
+                <v-row class="ma-0 pa-0">
+                  <v-col cols="3" class="text-center">{{
+                    vote.reg_date
+                  }}</v-col>
+                  <v-col cols="3" class="text-center">
+                    {{ vote.due_date }}
+                  </v-col>
+                  <v-col cols="3" class="text-center">
+                    {{ vote.match_date }}
+                  </v-col>
+                  <v-col cols="3" class="text-center">
+                    {{ vote.match_place }}
+                  </v-col>
+                </v-row>
+              </v-expansion-panel-header>
+
+              <v-expansion-panel-content
+                style="background-color:#121212;font-size: 0.75rem;line-height:100%;color:rgba(255, 255, 255, 0.9)"
+              >
+                <v-row class="ma-0 pa-0">
+                  <v-col cols="3" class="text-center">{{
+                    vote.reg_date
+                  }}</v-col>
+                  <v-col cols="3" class="text-center">
+                    {{ vote.due_date }}
+                  </v-col>
+                  <v-col cols="3" class="text-center">
+                    {{ vote.match_date }}
+                  </v-col>
+                  <v-col cols="3" class="text-center">
+                    {{ vote.match_place }}
+                  </v-col>
+                </v-row>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </v-col>
       </v-row>
     </v-container>
   </div>
 </template>
+
 <script>
 export default {
+  components: {},
   data() {
     return {
-      istoggled: false,
-      desserts: [
+      votes: [
         {
-          name: "Frozen Yogurt",
-          calories: 159
+          reg_date: "2020-09-18-09-00",
+          due_date: "2020-09-22-09-00",
+          match_date: "2020-09-30-09-00",
+          match_place: "서울시 성동구 서울숲 공원"
         },
         {
-          name: "Ice cream sandwich",
-          calories: 237
-        },
-        {
-          name: "Eclair",
-          calories: 262
-        },
-        {
-          name: "Cupcake",
-          calories: 305
-        },
-        {
-          name: "Gingerbread",
-          calories: 356
-        },
-        {
-          name: "Jelly bean",
-          calories: 375
-        },
-        {
-          name: "Lollipop",
-          calories: 392
-        },
-        {
-          name: "Honeycomb",
-          calories: 408
-        },
-        {
-          name: "Donut",
-          calories: 452
-        },
-        {
-          name: "KitKat",
-          calories: 518
+          reg_date: "2020-09-19-09-00",
+          due_date: "2020-09-30-09-00",
+          match_date: "2020-10-06-09-00",
+          match_place: "서울시 성동구 서울숲 공원"
         }
       ]
     };
-  },
-  methods: {
-    isToggle: function() {
-      alert("바보");
-      console.log(this.istoggled);
-      this.istoggled = !this.istoggled;
-    }
   }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <div style="display:">
+    <div style="height:100%">
       <v-navigation-drawer v-model="drawer" app>
         <v-card height="64" @click="$router.push({ name: 'home' })">
           <v-list-item height="64" link align-center>
@@ -51,7 +51,7 @@
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>FootBall Together</v-toolbar-title>
       </v-app-bar>
-      <v-main style="background-color:#34373a">
+      <v-main style="background-color:#34373a;height:100%;">
         <router-view></router-view>
       </v-main>
 
